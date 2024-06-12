@@ -47,7 +47,7 @@ export class CamarasPage implements OnInit {
   
   nivelFiltracionRequerido!:string
   filtro:string = '' 
-  longitud: number = 5
+  longitud: number = 10
   anchura:number = 5
   altura: number = 3
   calcVolumen:number = 75
@@ -160,7 +160,7 @@ export class CamarasPage implements OnInit {
   cargLatente!:number
   caudalIda:number = 8
   aireRenovacion:number
-  lamparaSeleccionada: string = 'Fluorescente'
+  lamparaSeleccionada: string = 'Led'
   potenciaIluminacion:number = 20
   factorSeguridad:number = 10
   proyecto:any
@@ -846,7 +846,7 @@ addRecinto(nombre:IonInput,temp_verano: HTMLInputElement,temp_invierno: HTMLInpu
 
     this.getResultados(this.proyecto)
     this.verResultados = false
-    this.climaService.agregarRecintoAProyecto(this.id, recinto)
+    //this.climaService.agregarRecintoAProyecto(this.id, recinto)
 
 }
 
@@ -1396,7 +1396,7 @@ this.cargaLatenteAire = (this.aireRenovacion/3600)*(1/this.volum_espe_int_ver)*(
 this.cargaLatenteAire.toFixed(2)
 console.log("7 :", this.cargaLatenteAire)
 //Esta formula es correcta No comprobada
-this.cargaLatenteOcupacion = this.numePersonas*this.cargLatente 
+this.cargaLatenteOcupacion = this.cargLatente 
 this.cargaLatenteOcupacion.toFixed(2)
 console.log("8 :", this.cargaLatenteOcupacion)
 //Esta formula es correcta No comprobada
