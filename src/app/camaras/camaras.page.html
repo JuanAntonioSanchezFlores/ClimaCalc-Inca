@@ -1,0 +1,992 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Cálculo de la potencia de climatización y calefacción</ion-title><br>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref = "/" text="Atrás" mode="ios" color="primary"></ion-back-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<br>
+<ion-content style="width: 98% !important;" >
+  <div style="width: 100%;">
+  <fieldset [hidden] = 'vistaRecintos'>
+    <ion-button (click)="crearRecinto()" expand="block" fill="solid" shape="round">
+      Crear recinto nuevo
+      <ion-icon name="add-circle-outline" style="font-size: 2em"></ion-icon>
+    </ion-button>
+    <legend>Listado de recintos:</legend>
+
+    <ion-list *ngFor="let recinto of recintos" style="display:inline-block;">
+      <!--<ion-item *ngIf="proyecto.titulo == variableRecibida || !variableRecibida">-->
+        <ion-card >
+          <ion-grid >
+            <ion-card-header>
+              <ion-grid >
+                <ion-row #recintoId id="{{recinto.idRec}}" style="display:none;" >
+                  <ion-col style="display: inline-flex;" (click)="actualizarRecinto(nombreRecinto,temp_verano,temp_invierno,
+                  hr_verano,hr_invierno,ida,nivelFiltro,largo, ancho, alto,volumen,cubierta,colorCubierta,tempeTechoVer, tempeTechoInv, supeTecho,suelo,numPersonas, cargaSensible,cargaLatente,caudaIda,
+                  airRenovacion,mayoracion,lampara,potIluminacion)">
+                    <ion-icon name="pencil-outline" style="font-size: 1em"></ion-icon>
+                    <label>Editar</label>
+                  </ion-col>
+                  <ion-col style="display: inline-flex;" (click)="click()">
+                    <ion-icon name="copy-outline" style="font-size: 1em"></ion-icon>
+                    <label>Copiar</label>
+                  </ion-col>
+                  <ion-col style="display: inline-flex;" (click)="click()">
+                    <ion-icon name="print-outline" style="font-size: 1em"></ion-icon>
+                    <label>Imprimir</label>
+                  </ion-col>
+                  <ion-col style="display: inline-flex;" (click)="borrarRecinto()">
+                    <ion-icon name="trash-outline" style="font-size: 1em"></ion-icon>
+                    <label>Borrar</label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-row>
+                  <ion-card-title>
+                  <ion-col size = "12" style="width: 90%;">
+                    <label>{{recinto.nombre}}</label>
+                  </ion-col>
+                  <ion-col >
+                    <ion-icon name="ellipsis-vertical-outline" (click)="iconoPuntos(recinto.idRec)" style="align-self: flex-end;"></ion-icon>
+                  </ion-col>
+                  </ion-card-title>
+                  </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <div style="width:30%; margin:auto;padding-top:10px; margin-bottom: 0px;">
+                      <ion-button (click)='actualizarRecinto(nombreRecinto,temp_verano,temp_invierno,
+                      hr_verano,hr_invierno,ida,nivelFiltro,largo, ancho, alto,volumen,cubierta,colorCubierta,tempeTechoVer, tempeTechoInv, supeTecho,suelo,numPersonas, cargaSensible,cargaLatente,caudaIda,
+                      airRenovacion,mayoracion,lampara,potIluminacion)' fill="solid" shape="round" color="success" size="small">
+                        Ver 
+                      </ion-button>
+                    </div>
+                  </ion-col>
+                 
+                </ion-row>
+              </ion-card-header>
+          </ion-grid>
+      </ion-card >
+    </ion-list>
+  </fieldset>
+
+
+
+  <!------------------------------------  VISTA CREAR RECINTO----------Vista oculta, visible al pulsar CREAR RECINTO -------------------->
+
+  <div [hidden]="vistaCrearRecinto" style="width:98%;margin:auto;">
+  <ion-card >
+    <ion-card-header>
+      <ion-card-title  >Proyecto: <label><strong>{{ proyectoTitulo }}</strong></label></ion-card-title>
+    </ion-card-header>
+    <ion-card-content style="padding-left: 10px;">
+      <label >Nombre del recinto:&nbsp; 
+      <ion-input type="text" placeholder="Introduzca nombre del recinto" style="font-size: 18px;" #nombreRecinto></ion-input>
+    </label>
+    </ion-card-content>
+  </ion-card >
+  <ion-card>
+    <ion-header>
+      <ion-grid >
+        <ion-row>
+          <!-- COLUMNA 1 ------------->
+          <ion-col size="12" size-md="12" size-lg="4" >
+            <!------------------------------------------------------------------------------------------ Fieldset 1-->
+            <fieldset>
+              <legend>Temperatura y humedad relativa del recinto</legend>
+              <ion-grid fixed>
+                <ion-row>
+                  
+                  <ion-col size="6" >
+                    <label>Tª verano (ºC)&nbsp;&nbsp;</label>
+                    <strong><input type="number" class="numero" value="25" [(ngModel)]= "temp_int_ver"  (change) = "cambioTempVerano()" #temp_verano/></strong><br/>
+                    <label>Tª invierno (ºC)&nbsp;</label>
+                    <strong><input type="number" class="numero" value="21" [(ngModel)]= "temp_int_inv" (change) = "cambioTempInvierno()" #temp_invierno/></strong>
+                  </ion-col>
+                  <ion-col size="6">
+                    <label>H.R. verano (%)&nbsp;&nbsp;</label>
+                    <strong><input type="number" class="numero" value="50" [(ngModel)] = "hr_int_ver" #hr_verano/></strong><br/>
+                    <label>H.R. invierno (%)&nbsp;</label>
+                    <strong><input type="number" class="numero" value="50" [(ngModel)] = "hr_int_inv" #hr_invierno/></strong>
+                  </ion-col>
+                  
+                </ion-row>
+              </ion-grid>
+            </fieldset>
+            <br/>
+            <fieldset>
+              <legend>Filtración del aire de ventilación</legend>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6">
+                    <ion-item class="escalado">
+                      <label style="width:100%; margin:auto;">IDA</label>
+                      <ion-select multiple="false" placeholder="Selecccione IDA(1,2,3,4)" [(ngModel)] = "nivelFiltracionRequerido" [ngModelOptions]="{ standalone: true }" (ionChange)="getFiltros()" #ida>
+                        <ion-select-option value="ida1"><strong>IDA 1</strong></ion-select-option>
+                        <ion-select-option value="ida2"><strong>IDA 2</strong></ion-select-option>
+                        <ion-select-option value="ida3"><strong>IDA 3</strong></ion-select-option>
+                        <ion-select-option value="ida4"><strong>IDA 4</strong></ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                    <label class="">Nivel de filtración requerido</label>
+                    <input type="text" class="numero" [(ngModel)] = 'filtro' [ngModelOptions]="{ standalone: true }" readonly #nivelFiltro/>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            
+              
+            </fieldset>
+            <!-- COLUMNA 2 ------------->
+          </ion-col>
+          <ion-col size="12" size-md="12" size-lg="3"  > 
+            <fieldset>
+              <legend>Dimensiones del recinto</legend>
+              <div style="text-align: center;">
+                <label>Longitud, L (m)</label><br/>
+                <input type="number" class="numero" [(ngModel)] = "longitud"  (input)="calculoVolumen()" #largo/><br/>
+                <label>Anchura, W (m)</label><br/>
+                <input type="number" class="numero" [(ngModel)] = "anchura"  (input)="calculoVolumen()" #ancho/><br/>
+                <label>Altura (m)</label><br/>
+                <input type="number" class="numero" [(ngModel)] = "altura"  (input)="calculoVolumen()" #alto/><br/>
+                <label>Volumen (m3)</label><br/>
+                <input type="number" class="numero" [(ngModel)] = "calcVolumen" #volumen/><br/>
+              </div><br/>
+            </fieldset>
+          
+          </ion-col>
+          <!--------------------------------------- CERRAMIENTOS ----------------------------------------->
+          <ion-col size="12" size-md="12" size-lg="5" >
+            <fieldset>
+              <legend>Características y ubicación de los cerramientos</legend>
+              <label style="padding-left: 10px;">Elija numero de cerramiento:</label><br>
+              <div style="display: inline;padding-left: 10px;">
+                <ion-button (click)="verCerramiento1()">1</ion-button>
+                <ion-button (click)="verCerramiento2()">2</ion-button>
+                <ion-button (click)="verCerramiento3()">3</ion-button>
+                <ion-button (click)="verCerramiento4()">4</ion-button>
+                <ion-button (click)="pruebas()">Pruebas</ion-button>
+
+              </div>
+              <!----------------------------------  COOR 1 ---------------------------------------------------------->
+              <div id="coor1" [hidden]="coor1Visible" >
+                <ion-grid >
+                  <ion-row>
+                    <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>Seleccione orientación cerramiento (1)</strong></label></ion-col>
+                  </ion-row>
+                 
+                
+                  <ion-grid class="imagen">
+                    <ion-row>
+                      <ion-col size="5"></ion-col>
+                      <ion-col size="2"><strong><label class="coordenadas"  (click)="seleccionCoordenadaN()" >N</label></strong></ion-col>
+                      <ion-col size="5"></ion-col>
+                    </ion-row><br>
+                    <ion-row>
+                      <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaO()" >O</label></strong></ion-col>
+                      <ion-col size="8"></ion-col>
+                      <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaE()" >E</label></strong></ion-col>
+                    </ion-row><br>
+                    <ion-row>
+                      <ion-col size="5"></ion-col>
+                      <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaS()" >S</label></strong></ion-col>
+                      <ion-col size="5"></ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-grid>
+              <ion-grid ><br>
+                <ion-row>
+                  <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;">Orientacion seleccionada para cerramiento (1): <strong><span style="color:green">{{ listaParamCerramiento1[0]}}</span></strong></label></ion-col>
+                </ion-row>
+                <!--- FILA 1 -------------------->
+                <ion-row>
+                  
+                <div style="display: inline-flex;">
+                    <ion-radio-group value="interior" name="coor1" style="margin-left: 10px;" label="Cerramiento (1)" [(ngModel)] = 'cerramiento1Exterior' (ionChange)="getColor()" #cerram1><br/>
+                      <ion-radio id="int1" value="Interior" label="Interior" >Interior&nbsp;</ion-radio><br>
+                      <ion-radio id="ext1" value="Exterior"  label="Exterior" style="padding-top: 4px;">Exterior</ion-radio>
+                    </ion-radio-group>
+                    <div style="margin-top: 20px;margin-left:20px;">
+                      <ion-select  name ="coor1" multiple="false" placeholder="Seleccione color" [hidden] = "colSupVisible" [(ngModel)]="colorCerramiento1" (ionChange)="getColorCerramiento1($event.target.name)" class="select" #colorCerr1>
+                        <ion-select-option value="Claro">Claro</ion-select-option>
+                        <ion-select-option value="Medio">Medio</ion-select-option>
+                        <ion-select-option value="Oscuro">Oscuro</ion-select-option>
+                      </ion-select>
+                    </div>
+                </div>
+                </ion-row><br/>
+                <ion-row>
+                  <ion-col size="12">
+                    <label>Temperatura cerramiento verano (ºC)</label>
+                    <input type="number" name="coor1" class="numero"  [(ngModel)] = "tCerVer" (change)="getTempCerrVer(tempCerVer.name)" #tempCerVer/><br/>
+                    <label>Temperatura cerramiento invierno (ºC)</label>
+                    <input type="number"  name="coor1" class="numero" [(ngModel)] = "tCerInv" (change)="getTempCerrInv(tempCerInv.name)" #tempCerInv/><br/>
+                    <label>Superficie cerramiento (m2)</label>
+                    <input type="number" name="coor1" class="numero" [(ngModel)] = "supCerra" readonly  #supCerramiento/><br/>
+                  </ion-col>
+                </ion-row>
+                <!--- FILA 2 -------------------->
+                <ion-row>
+                  <label>¿Contiene ventanas o escaparates de vidrio?</label>
+                </ion-row>
+                <ion-row >
+                  <ion-col size="4">
+                    <ion-radio-group name ="coor1" style="padding-left: 20px;"[(ngModel)]="vidrioSeleccionado" (ionChange)="getVidrioSeleccionado()" #ventanas>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 18px;padding-top: 4px;">Si&nbsp;&nbsp;</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="8" style="display: inline" [hidden]="vidrioDesabilitado">
+                      <label>Superficie vidrios (m2)</label>
+                      <input type="number" name = "coor1" class="numero" [(ngModel)] = 'superficieVidrios' (change)="getSupVidrio(supVidrio.name)" #supVidrio/><br/>
+                    <div>
+                      <label style="padding-top: 10px;">Tipo de vidrio</label>
+                      <img id="click-trigger11" src="assets/iconoInfo.png" width="20px"
+                          style="margin-left: 10px;" />
+                      <ion-popover trigger="click-trigger11" triggerAction="click">
+                        <ng-template>
+                          <ion-content class="ion-padding">Vidrio normal<br/>Vidrio Doble<br/>Vidrio triple<br/>Vidrio de baja emisividad</ion-content>
+                        </ng-template>
+                      </ion-popover>
+                      <ion-select  multiple="false" name="coor1" placeholder="Select vidrio" class="select"[(ngModel)] = "tipoVidrio" (ionChange) = "getTipVidrio(tipVidrio.name)" #tipVidrio>
+                        <ion-select-option value="Normal">Normal</ion-select-option>
+                        <ion-select-option value="Doble">Doble</ion-select-option>
+                        <ion-select-option value="Triple">Triple</ion-select-option>
+                        <ion-select-option value="Baja emisividad">Baja emisividad</ion-select-option>
+                      </ion-select>
+                    </div>
+                </ion-col>
+                </ion-row>
+                <!--- FILA 3 -------------------->
+                <ion-row>
+                  <ion-col size="12">
+                    <label>¿Contiene puertas?</label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3">
+                    <ion-radio-group name="coor1" value="no" style="padding-left: 20px;" [(ngModel)] = "puertasVisible" (ionChange)="getPuertasVisible(puertas.name)" #puertas>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 26px;padding-top: 4px;">Si</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div style="display: inline;margin-top: 40px;margin-left:0px;" [hidden]="superfiPuertas">
+                      <label>Superficie puertas (m2)</label>
+                      <input type="number" name="coor1" class="numero" [(ngModel)] = 'superficiePuertas'(change)="getSupPuertas(supPuertas.name)" #supPuertas/><br/>
+                    </div>
+                  
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <label><strong>Valores seleccionados:</strong></label><br>
+                    <label style="padding-left: 20px;">Orientacion: <span style="color:green">{{listaParamCerramiento1[0] }}</span></label><br>
+                    <label style="padding-left: 20px;">Cerramiento tipo: <span style="color:green">{{listaParamCerramiento1[1] }}</span></label><br>
+                    <label style="padding-left: 20px;">Color Cerramiento: <span style="color:green">{{listaParamCerramiento1[2] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene ventanas o escaparates: <span style="color:green">{{listaParamCerramiento1[3] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie vidrio: <span style="color:green">{{listaParamCerramiento1[4] }}</span></label><br>
+                    <label style="padding-left: 20px;">Tipo de vidrio: <span style="color:green">{{listaParamCerramiento1[5] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene puertas: <span style="color:green">{{listaParamCerramiento1[6] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie puertas: <span style="color:green">{{listaParamCerramiento1[7] }}</span></label><br>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              </div>
+
+              <!-------------------------------------COOR 2-------------------------------------------->
+              <div id="coor2" [hidden]="coor2Visible">
+                <ion-grid >
+                  <ion-row>
+                    <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>La orientación del cerramiento (2) es: <span style="color:green">{{ this.listaParamCerramiento2[0] }}</span></strong></label></ion-col>
+                  </ion-row>
+                <ion-row>
+                  
+                <div style="display: inline-flex;">
+                    <ion-radio-group value="interior" name="coor2" style="margin-left: 10px;" label="Cerramiento (1)" [(ngModel)] = 'cerramiento1Exterior1' (ionChange)="getColor()" #cerram1><br/>
+                      <ion-radio id="int1" value="Interior" label="Interior" >Interior&nbsp;</ion-radio><br>
+                      <ion-radio id="ext1" value="Exterior"  label="Exterior" style="padding-top: 4px;">Exterior</ion-radio>
+                    </ion-radio-group>
+                    <div style="margin-top: 20px;margin-left:20px;">
+                      <ion-select name="coor2" multiple="false" placeholder="Seleccione color" [hidden] = "colSupVisible1" [(ngModel)] = "colorCerramiento2"(ionChange)="getColorCerramiento1($event.target.name)" class="select" #colorCerr2>
+                        <ion-select-option value="Claro">Claro</ion-select-option>
+                        <ion-select-option value="Medio">Medio</ion-select-option>
+                        <ion-select-option value="Oscuro">Oscuro</ion-select-option>
+                      </ion-select>
+                    </div>
+                </div>
+                </ion-row><br/>
+                <ion-row>
+                  <ion-col size="12">
+                    <label>Temperatura cerramiento verano (ºC)</label>
+                    <input type="number"  name="coor2" class="numero"  [(ngModel)] = "tCerVer1" (change)="getTempCerrVer(tempCerVer1.name)"   #tempCerVer1/><br/>
+                    <label>Temperatura cerramiento invierno (ºC)</label>
+                    <input type="number"  name="coor2" class="numero" [(ngModel)] = "tCerInv1" (change)="getTempCerrInv(tempCerInv1.name)" #tempCerInv1/><br/>
+                    <label>Superficie cerramiento (m2)</label>
+                    <input type="number" name="coor2" class="numero"  [(ngModel)] = "supCerra1" readonly  #supCerramiento1/><br/>
+                  </ion-col>
+                </ion-row>
+                <!--- FILA 2 -------------------->
+                <ion-row>
+                  <label>¿Contiene ventanas o escaparates de vidrio?</label>
+                </ion-row>
+                <ion-row >
+                  <ion-col size="4">
+                    <ion-radio-group name ="coor2" style="padding-left: 20px;" [(ngModel)]="vidrioSeleccionado1" (ionChange)="getVidrioSeleccionado()" #ventanas1>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 18px;padding-top: 4px;">Si&nbsp;&nbsp;</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="8" style="display: inline" [hidden]="vidrioDesabilitado1">
+                      <label>Superficie vidrios (m2)</label>
+                      <input type="number" name="coor2" class="numero" [(ngModel)] = 'superficieVidrios1' (change)="getSupVidrio(supVidrio1.name)" #supVidrio1/><br/>
+                    <div>
+                      <label style="padding-top: 10px;">Tipo de vidrio</label>
+                      <img id="click-trigger11" src="assets/iconoInfo.png" width="20px"
+                          style="margin-left: 10px;" />
+                      <ion-popover trigger="click-trigger11" triggerAction="click">
+                        <ng-template>
+                          <ion-content class="ion-padding">Vidrio normal<br/>Vidrio Doble<br/>Vidrio triple<br/>Vidrio de baja emisividad</ion-content>
+                        </ng-template>
+                      </ion-popover>
+                      <ion-select  multiple="false" name="coor2" placeholder="Select vidrio"  [(ngModel)] = "tipoVidrio1" class="select" (ionChange) = getTipVidrio(tipVidrio1.name) #tipVidrio1>
+                        <ion-select-option value="normal">Normal</ion-select-option>
+                        <ion-select-option value="doble">Doble</ion-select-option>
+                        <ion-select-option value="triple">Triple</ion-select-option>
+                        <ion-select-option value="emisividad">Baja emisividad</ion-select-option>
+                      </ion-select>
+                    </div>
+                </ion-col>
+                </ion-row>
+                <!--- FILA 3 -------------------->
+                <ion-row>
+                  <ion-col size="12">
+                    <label>¿Contiene puertas?</label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3">
+                    <ion-radio-group name = "coor2" value="no" style="padding-left: 20px;" [(ngModel)] = "puertasVisible1" (ionChange)="getPuertasVisible(puertas1.name)" #puertas1>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 26px;padding-top: 4px;">Si</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div style="display: inline;margin-top: 40px;margin-left:0px;" [hidden]="superfiPuertas1">
+                      <label>Superficie puertas (m2)</label>
+                      <input type="number" name ="coor2" class="numero" [(ngModel)] = 'superficiePuertas1'(change)="getSupPuertas(supPuertas1.name)" #supPuertas1/><br/>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <label><strong>Valores seleccionados:</strong></label><br>
+                    <label style="padding-left: 20px;">Orientacion: <span style="color:green">{{listaParamCerramiento2[0] }}</span></label><br>
+                    <label style="padding-left: 20px;">Cerramiento tipo: <span style="color:green">{{listaParamCerramiento2[1] }}</span></label><br>
+                    <label style="padding-left: 20px;">Color Cerramiento: <span style="color:green">{{listaParamCerramiento2[2] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene ventanas o escaparates: <span style="color:green">{{listaParamCerramiento2[3] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie vidrio: <span style="color:green">{{listaParamCerramiento2[4] }}</span></label><br>
+                    <label style="padding-left: 20px;">Tipo de vidrio: <span style="color:green">{{listaParamCerramiento2[5] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene puertas: <span style="color:green">{{listaParamCerramiento2[6] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie puertas: <span style="color:green">{{listaParamCerramiento2[7] }}</span></label><br>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              </div>
+              <!-------------------------------------COOR 3-------------------------------------------->
+              <div id="coor3" [hidden]="coor3Visible">
+                <ion-grid >
+                  <ion-row>
+                    <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>La orientación del cerramiento (3) es: <span style="color:green">{{ listaParamCerramiento3[0] }}</span></strong></label></ion-col>
+                  </ion-row>
+                
+                              <!--- FILA 1 -------------------->
+                <ion-row>
+                  
+                <div style="display: inline-flex;">
+                    <ion-radio-group name = "coor3" value="interior" style="margin-left: 10px;" label="Cerramiento (1)" [(ngModel)] = 'cerramiento1Exterior2' (ionChange)="getColor()" #cerram1><br/>
+                      <ion-radio id="int1" value="Interior" label="Interior" >Interior&nbsp;</ion-radio><br>
+                      <ion-radio id="ext1" value="Exterior"  label="Exterior" style="padding-top: 4px;">Exterior</ion-radio>
+                    </ion-radio-group>
+                    <div style="margin-top: 20px;margin-left:20px;">
+                      <ion-select  name = "coor3" multiple="false" placeholder="Seleccione color" [hidden] = "colSupVisible2" [(ngModel)] = 'colorCerramiento3' (ionChange)="getColorCerramiento1($event.target.name)" class="select" #colorCerr3>
+                        <ion-select-option value="Claro">Claro</ion-select-option>
+                        <ion-select-option value="Medio">Medio</ion-select-option>
+                        <ion-select-option value="Oscuro">Oscuro</ion-select-option>
+                      </ion-select>
+                    </div>
+                </div>
+                </ion-row><br/>
+                <ion-row>
+                  <ion-col size="12">
+                    <label>Temperatura cerramiento verano (ºC)</label>
+                    <input type="number"  name="coor3" class="numero" [(ngModel)] = "tCerVer2"  (change)="getTempCerrVer(tempCerVer2.name)"   #tempCerVer2/><br/>
+                    <label>Temperatura cerramiento invierno (ºC)</label>
+                    <input type="number"  name="coor3" class="numero"  [(ngModel)] = "tCerInv2" (change)="getTempCerrInv(tempCerInv2.name)"  #tempCerInv2/><br/>
+                    <label>Superficie cerramiento (m2)</label>
+                    <input type="number"  name="coor3" class="numero" [(ngModel)] = "supCerra2" readonly  #supCerramiento2/><br/>
+                  </ion-col>
+                </ion-row>
+                <!--- FILA 2 -------------------->
+                <ion-row>
+                  <label>¿Contiene ventanas o escaparates de vidrio?</label>
+                </ion-row>
+                <ion-row >
+                  <ion-col size="4">
+                    <ion-radio-group name="coor3" style="padding-left: 20px;" [(ngModel)]="vidrioSeleccionado2" (ionChange)="getVidrioSeleccionado()" #ventanas2>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 18px;padding-top: 4px;">Si&nbsp;&nbsp;</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="8" style="display: inline" [hidden]="vidrioDesabilitado2">
+                      <label>Superficie vidrios (m2)</label>
+                      <input type="number" name="coor3" class="numero" [(ngModel)] = 'superficieVidrios2' (change)="getSupVidrio(supVidrio2.name)" #supVidrio2/><br/>
+                    <div>
+                      <label style="padding-top: 10px;">Tipo de vidrio</label>
+                      <img id="click-trigger11" src="assets/iconoInfo.png" width="20px"
+                          style="margin-left: 10px;" />
+                      <ion-popover trigger="click-trigger11" triggerAction="click">
+                        <ng-template>
+                          <ion-content class="ion-padding">Vidrio normal<br/>Vidrio Doble<br/>Vidrio triple<br/>Vidrio de baja emisividad</ion-content>
+                        </ng-template>
+                      </ion-popover>
+                      <ion-select  multiple="false" name="coor3" placeholder="Select vidrio"  class="select" [(ngModel)] = "tipoVidrio2" (ionChange) = getTipVidrio(tipVidrio2.name) #tipVidrio2>
+                        <ion-select-option value="normal">Normal</ion-select-option>
+                        <ion-select-option value="doble">Doble</ion-select-option>
+                        <ion-select-option value="triple">Triple</ion-select-option>
+                        <ion-select-option value="emisividad">Baja emisividad</ion-select-option>
+                      </ion-select>
+                    </div>
+                </ion-col>
+                </ion-row>
+                <!--- FILA 3 -------------------->
+                <ion-row>
+                  <ion-col size="12">
+                    <label>¿Contiene puertas?</label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3">
+                    <ion-radio-group name = "coor3"value="no" style="padding-left: 20px;" [(ngModel)] = "puertasVisible2" (ionChange)="getPuertasVisible(puertas2.name)" #puertas2>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 26px;padding-top: 4px;">Si</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div style="display: inline;margin-top: 40px;margin-left:0px;" [hidden]="superfiPuertas2">
+                      <label>Superficie puertas (m2)</label>
+                      <input type="number"  name ="coor3" class="numero" [(ngModel)] = 'superficiePuertas2'(change)="getSupPuertas(supPuertas2.name)" #supPuertas2/><br/>
+                    </div>
+                  
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <label><strong>Valores seleccionados:</strong></label><br>
+                    <label style="padding-left: 20px;">Orientacion: <span style="color:green">{{listaParamCerramiento3[0] }}</span></label><br>
+                    <label style="padding-left: 20px;">Cerramiento tipo: <span style="color:green">{{listaParamCerramiento3[1] }}</span></label><br>
+                    <label style="padding-left: 20px;">Color Cerramiento: <span style="color:green">{{listaParamCerramiento3[2] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene ventanas o escaparates: <span style="color:green">{{listaParamCerramiento3[3] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie vidrio: <span style="color:green">{{listaParamCerramiento3[4] }}</span></label><br>
+                    <label style="padding-left: 20px;">Tipo de vidrio: <span style="color:green">{{listaParamCerramiento3[5] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene puertas: <span style="color:green">{{listaParamCerramiento3[6] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie puertas: <span style="color:green">{{listaParamCerramiento3[7] }}</span></label><br>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              </div>
+              <!-------------------------------------COOR 4-------------------------------------------->
+              <div id="coor4" [hidden]="coor4Visible">
+                <ion-grid >
+                  <ion-row>
+                    <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>La orientación del cerramiento (4) es: <span style="color:green">{{ listaParamCerramiento4[0] }}</span></strong></label></ion-col>
+                  
+                  </ion-row>
+                
+               
+                <!--- FILA 1 -------------------->
+                <ion-row>
+                  
+                <div style="display: inline-flex;">
+                    <ion-radio-group name="coor4"  style="margin-left: 10px;" label="Cerramiento (1)" [(ngModel)] = 'cerramiento1Exterior3' (ionChange)="getColor()" #cerram1><br/>
+                      <ion-radio id="int1" value="Interior" label="Interior" >Interior&nbsp;</ion-radio><br>
+                      <ion-radio id="ext1" value="Exterior"  label="Exterior" style="padding-top: 4px;">Exterior</ion-radio>
+                    </ion-radio-group>
+                    <div style="margin-top: 20px;margin-left:20px;">
+                      <ion-select  name = "coor4" multiple="false" placeholder="Seleccione color" [hidden] = "colSupVisible3" [(ngModel)] = "colorCerramiento4" (ionChange)="getColorCerramiento1($event.target.name)" class="select" #colorCerr4>
+                        <ion-select-option value="Claro">Claro</ion-select-option>
+                        <ion-select-option value="Medio">Medio</ion-select-option>
+                        <ion-select-option value="Oscuro">Oscuro</ion-select-option>
+                      </ion-select>
+                    </div>
+                </div>
+                </ion-row><br/>
+                <ion-row>
+                  <ion-col size="12">
+                    <label>Temperatura cerramiento verano (ºC)</label>
+                    <input type="number" name="coor4" class="numero" [(ngModel)] = "tCerVer3" (change)="getTempCerrVer(tempCerVer3.name)" #tempCerVer3/><br/>
+                    <label>Temperatura cerramiento invierno (ºC)</label>
+                    <input type="number"  name="coor4" class="numero" [(ngModel)] = "tCerInv3" (change)="getTempCerrInv(tempCerInv3.name)" #tempCerInv3/><br/>
+                    <label>Superficie cerramiento (m2)</label>
+                    <input type="number"  name="coor4" class="numero" [(ngModel)] = "supCerra3" readonly #supCerramiento3/><br/>
+                  </ion-col>
+                </ion-row>
+                <!--- FILA 2 -------------------->
+                <ion-row>
+                  <label>¿Contiene ventanas o escaparates de vidrio?</label>
+                </ion-row>
+                <ion-row >
+                  <ion-col size="4">
+                    <ion-radio-group name = "coor4" style="padding-left: 20px;" [(ngModel)]="vidrioSeleccionado3" (ionChange)="getVidrioSeleccionado()" #ventanas3>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 18px;padding-top: 4px;">Si&nbsp;&nbsp;</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="8" style="display: inline" [hidden]="vidrioDesabilitado3">
+                      <label>Superficie vidrios (m2)</label>
+                      <input type="number" name="coor4" class="numero" [(ngModel)] = 'superficieVidrios3' (change)="getSupVidrio(supVidrio3.name)" #supVidrio3/><br/>
+                    <div>
+                      <label style="padding-top: 10px;">Tipo de vidrio</label>
+                      <img id="click-trigger11" src="assets/iconoInfo.png" width="20px"
+                          style="margin-left: 10px;" />
+                      <ion-popover trigger="click-trigger11" triggerAction="click">
+                        <ng-template>
+                          <ion-content class="ion-padding">Vidrio normal<br/>Vidrio Doble<br/>Vidrio triple<br/>Vidrio de baja emisividad</ion-content>
+                        </ng-template>
+                      </ion-popover>
+                      <ion-select  multiple="false" name="coor4" placeholder="Select vidrio"  class="select" [(ngModel)] = "tipoVidrio3" (ionChange) = getTipVidrio(tipVidrio3.name) #tipVidrio3>
+                        <ion-select-option value="normal">Normal</ion-select-option>
+                        <ion-select-option value="doble">Doble</ion-select-option>
+                        <ion-select-option value="triple">Triple</ion-select-option>
+                        <ion-select-option value="emisividad">Baja emisividad</ion-select-option>
+                      </ion-select>
+                    </div>
+                </ion-col>
+                </ion-row>
+                <!--- FILA 3 -------------------->
+                <ion-row>
+                  <ion-col size="12">
+                    <label>¿Contiene puertas?</label>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3">
+                    <ion-radio-group name="coor4" value="no" style="padding-left: 20px;" [(ngModel)] = "puertasVisible3" (ionChange)="getPuertasVisible(puertas3.name)" #puertas3>
+                      <ion-radio value="No">No</ion-radio><br/>
+                      <ion-radio value="Si" style="padding-left: 26px;padding-top: 4px;">Si</ion-radio>
+                    </ion-radio-group>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div style="display: inline;margin-top: 40px;margin-left:0px;" [hidden]="superfiPuertas3">
+                      <label>Superficie puertas (m2)</label>
+                      <input type="number"  name ="coor4" class="numero" [(ngModel)] = 'superficiePuertas3'(change)="getSupPuertas(supPuertas3.name)" #supPuertas3/><br/>
+                    </div>
+                  
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <label><strong>Valores seleccionados:</strong></label><br>
+                    <label style="padding-left: 20px;">Orientacion: <span style="color:green">{{listaParamCerramiento4[0] }}</span></label><br>
+                    <label style="padding-left: 20px;">Cerramiento tipo: <span style="color:green">{{listaParamCerramiento4[1] }}</span></label><br>
+                    <label style="padding-left: 20px;">Color Cerramiento: <span style="color:green">{{listaParamCerramiento4[2] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene ventanas o escaparates: <span style="color:green">{{listaParamCerramiento4[3] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie vidrio: <span style="color:green">{{listaParamCerramiento4[4] }}</span></label><br>
+                    <label style="padding-left: 20px;">Tipo de vidrio: <span style="color:green">{{listaParamCerramiento4[5] }}</span></label><br>
+                    <label style="padding-left: 20px;">Contiene puertas: <span style="color:green">{{listaParamCerramiento4[6] }}</span></label><br>
+                    <label style="padding-left: 20px;">Superficie puertas: <span style="color:green">{{listaParamCerramiento4[7] }}</span></label><br>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              </div>
+            </fieldset>
+
+
+
+
+
+
+
+                <!-------------------------------- CUBIERTA --------------------> 
+            <fieldset>
+              <legend>Techo</legend>
+              <ion-grid >
+                <ion-row>
+                  <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>Seleccione orientación techo:</strong></label></ion-col>
+                </ion-row>
+               
+              
+                <ion-grid class="imagen">
+                  <ion-row>
+                    <ion-col size="5"></ion-col>
+                    <ion-col size="2"><strong><label class="coordenadas"  (click)="seleccionCoordenadaNTecho()" >N</label></strong></ion-col>
+                    <ion-col size="5"></ion-col>
+                  </ion-row><br>
+                  <ion-row>
+                    <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaOTecho()" >O</label></strong></ion-col>
+                    <ion-col size="8"></ion-col>
+                    <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaETecho()" >E</label></strong></ion-col>
+                  </ion-row><br>
+                  <ion-row>
+                    <ion-col size="5"></ion-col>
+                    <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaSTecho()" >S</label></strong></ion-col>
+                    <ion-col size="5"></ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-grid><br>
+              <div id="coor5">
+              <ion-grid >
+                <ion-row>
+                  <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>Orientación techo seleccionada: <span style = "color:green">{{ orientacionTecho }}</span></strong></label></ion-col>
+                </ion-row>
+              
+                
+              </ion-grid>
+            </div>
+             <ion-grid >
+              <!--- FILA 1 -------------------->
+                  <ion-row>
+                    <label style="margin-bottom: 0px;">Techo</label>
+                    <div style="display: inline-flex;">
+                      <ion-radio-group value="interior" style="margin-left: 10px;" label="Cubierta" [(ngModel)] = 'cubiertaSeleccionada' (ionChange)="getCubiertaSeleccionada()" #cubierta><br/>
+                        <ion-radio id="int1" value="Interior" label="Interior" >Interior&nbsp;</ion-radio><br>
+                        <ion-radio id="ext1" value="Exterior"  label="Exterior" style="padding-top: 4px;">Exterior</ion-radio>
+                      </ion-radio-group>
+                      <div style="margin-top: 20px;margin-left:20px;" [hidden]="cubiertaDesabilitada" >
+                        <ion-select  multiple="false" name='coor5'placeholder="Seleccione color" [(ngModel)] = "colorCerramientoCubierta" (ionChange)="getColorCerramiento1($event.target.name)" class="select" #colorCubierta>
+                          <ion-select-option value="Claro">Claro</ion-select-option>
+                          <ion-select-option value="Medio">Medio</ion-select-option>
+                          <ion-select-option value="Oscuro">Oscuro</ion-select-option>
+                        </ion-select>
+                      </div>
+                    </div>
+                  </ion-row><br/>
+                  <ion-row>
+                    <ion-col size="12">
+                      <label>Temperatura techo verano (ºC)</label>
+                      <input type="number" class="numero" [(ngModel)] = "tempTechoVer" #tempeTechoVer/><br/>
+                      <label>Temperatura techo invierno (ºC)</label>
+                      <input type="number" class="numero" [(ngModel)] = "tempTechoInv" #tempeTechoInv/><br/>
+                      <label>Superficie techo (m2)</label>
+                      <input type="number" class="numero" [(ngModel)] = "supTecho" #supeTecho/><br/>
+                    </ion-col>
+                  </ion-row>
+                  <!--- FILA 2 -------------------->
+                  <ion-row>
+                    <label>¿Contiene ventanas o escaparates de vidrio?</label>
+                  </ion-row>
+                  <ion-row >
+                    <ion-col size="4">
+                      <ion-radio-group name = "coor5" style="padding-left: 20px;" [(ngModel)]="vidrioSeleccionado4" (ionChange)="getVidrioSeleccionado()" #ventanas4>
+                        <ion-radio value="No">No</ion-radio><br/>
+                        <ion-radio value="Si" style="padding-left: 18px;padding-top: 4px;">Si&nbsp;&nbsp;</ion-radio>
+                      </ion-radio-group>
+                    </ion-col>
+                    <ion-col size="8" style="display: inline" [hidden]="vidrioDesabilitado4">
+                        <label>Superficie vidrios (m2)</label>
+                        <input type="number" class="numero" [(ngModel)] = 'superficieVidrios4'  #supVidrio4/><br/>
+                      <div>
+                        <label style="padding-top: 10px;">Tipo de vidrio</label>
+                        <img id="click-trigger11" src="assets/iconoInfo.png" width="20px"
+                            style="margin-left: 10px;" />
+                        <ion-popover trigger="click-trigger11" triggerAction="click">
+                          <ng-template>
+                            <ion-content class="ion-padding">Vidrio normal<br/>Vidrio Doble<br/>Vidrio triple<br/>Vidrio de baja emisividad</ion-content>
+                          </ng-template>
+                        </ion-popover>
+                        <ion-select  multiple="false" name="coor5" placeholder="Select vidrio"  class="select" [(ngModel)] = "tipoVidrio4" (ionChange) = getTipVidrio(tipVidrio4.name) #tipVidrio4>
+                          <ion-select-option value="normal">Normal</ion-select-option>
+                          <ion-select-option value="doble">Doble</ion-select-option>
+                          <ion-select-option value="triple">Triple</ion-select-option>
+                          <ion-select-option value="emisividad">Baja emisividad</ion-select-option>
+                        </ion-select>
+                      </div>
+                  </ion-col>
+                  </ion-row>
+                  <!--- FILA 3 -------------------->
+                  <ion-row>
+                    <ion-col size="12">
+                      <label>¿Contiene puertas?</label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="3">
+                      <ion-radio-group name="coor5" value="no" style="padding-left: 20px;" [(ngModel)] = "puertasVisible4" (ionChange)="getPuertasVisible(puertas4.name)" #puertas4>
+                        <ion-radio value="No">No</ion-radio><br/>
+                        <ion-radio value="Si" style="padding-left: 26px;padding-top: 4px;">Si</ion-radio>
+                      </ion-radio-group>
+                    </ion-col>
+                    <ion-col size="9">
+                      <div style="display: inline;margin-top: 40px;margin-left:0px;" [hidden]="superfiPuertas4">
+                        <label>Superficie puertas (m2)</label>
+                        <input type="number" class="numero" [(ngModel)] = 'superficiePuertas4' #supPuertas4/><br/>
+                      </div>
+                    
+                    </ion-col>
+                  </ion-row>
+                 
+                </ion-grid>
+              </fieldset>
+
+              <!-------------------------------------------   SUELO   ---------------------------------------------------------------------------->
+              <fieldset>
+                <legend>Suelo</legend>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                    <label>Suelo
+                      <div style="display: inline-flex;">
+                        <ion-radio-group value="interior" style="margin-left: 10px;" label="Suelo" [(ngModel)] = 'sueloSeleccionado' (ionChange)="getTempSuelo()" #suelo><br/>
+                          <ion-radio id="int1" value="Interior" label="Interior" style="padding-left:115px">Interior&nbsp;</ion-radio><br>
+                          <ion-radio id="ext1" value="Exterior"  label="Exterior" style="padding-left:115px;padding-top:4px">Exterior</ion-radio><br>
+                          <ion-radio id="ext2" value="En contacto con el terreno" style="padding-top: 4px;" label="Contacto" >En contacto con el terreno</ion-radio>
+                        </ion-radio-group>
+                      </div>
+                    </label>
+                  </ion-col>
+                  <ion-row>
+                    <ion-col size="12">
+                      <label>Temperatura suelo verano (ºC)</label>
+                      <input type="number" class="numero" [(ngModel)] = "tempSueloVer" #tempeSueloVer/><br/>
+                      <label>Temperatura suelo invierno (ºC)</label>
+                      <input type="number" class="numero" [(ngModel)] = "tempSueloInv" #tempeSueloInv/><br/>
+                      <label>Superficie suelo (m2)</label>
+                      <input type="number" class="numero" [(ngModel)] = "supSuelo" readonly #supeSuelo /><br/>
+                    </ion-col>
+                  </ion-row>  
+                </ion-row>
+              </ion-grid>
+           
+            </fieldset>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <fieldset>
+              <div style="text-align: center;">
+                <img src="assets/personas.JPG" style="width:32px"/>
+              </div>
+              <legend>Ocupacion</legend>
+              <label>Nº Personas</label>
+              <input type="number"  name ="coor4" class="numero" [(ngModel)] = 'numePersonas' #numPersonas/><br/>
+              <ion-radio-group  value="no" style="padding-left: 20px;" [(ngModel)] = "activity" (ionChange)="getValorActividad()" #actividad>
+                <ion-radio value="Sedentaria">Actividad Sedentaria</ion-radio><br/>
+                <ion-radio value="Activa" style="padding-left: 26px;padding-top: 4px;">Trabajo activo</ion-radio>
+              </ion-radio-group><br>
+              
+              <label>Carga sensible por persona (W/persona)</label>
+              <input type="number"  name ="coor4" class="numero" [(ngModel)] = 'cargSensible' readonly #cargaSensible/><br/>
+              <label>Carga latente por persona (W/persona)</label>
+              <input type="number"  name ="coor4" class="numero" [(ngModel)] = 'cargLatente' readonly #cargaLatente/><br/>
+            </fieldset>
+            </ion-col>
+           
+          </ion-row>
+          <ion-row>
+          <ion-col size="12">
+            <fieldset>
+              <div style="text-align: center;">
+                <img src="assets/caudal.JPG" style="width:64px"/>
+              </div>
+              <legend>Caudales</legend>
+              <label>Caudal "IDA" (L/s persona)</label>
+              <input type="number"  class="numero" [(ngModel)] = 'caudalIda' readonly #caudaIda/><br/>
+              <label>Caudal de aire de renovación (m3/h)</label>
+              <input type="number" class="numero" [(ngModel)] = 'aireRenovacion' readonly #airRenovacion/><br/>
+           </fieldset>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+          <fieldset>
+            <div style="text-align: center;">
+              <img src="assets/bombilla.JPG" style="width:32px"/>
+            </div>
+            <legend>Iluminación</legend>
+          
+            
+              <ion-radio-group value="interior" label="Lámparas" [(ngModel)] = 'lamparaSeleccionada' (ionChange)="getIluminacion()" #lampara><br/>
+                <ion-radio id="lampFlu" value="Fluorescente" label="Fluorescente">Fluorescente&nbsp;</ion-radio><br>
+                <ion-radio id="lampLed" value="Led"  label="Led" >Led</ion-radio><br>
+              </ion-radio-group><br>
+            <label>Potencia iluminación estimada (W/m2)</label>
+              <input type="number"  name ="coor4" class="numero" [(ngModel)] = 'potenciaIluminacion' (change)="getPotenciaIluminacion()" #potIluminacion/><br/>
+            
+          </fieldset>
+      </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <fieldset>
+              <div style="text-align: center;">
+                <img src="assets/mayoracion.JPG" style="width:64px"/>
+              </div>
+              <legend>Factores de mayoración</legend>
+              <label>Factor seguridad (%)</label>
+              <input type="number"  name ="coor4" class="numero" [(ngModel)] = 'factorSeguridad'(change)="getFactorSeguridad()" #mayoracion/><br/>
+            </fieldset>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <fieldset>
+              <div style="text-align: center;">
+                <img src="assets/equipo.JPG" style="width:64px"/>
+              </div>
+              <legend>Otros equipos</legend>
+              <label><strong>Nombre Equipo:</strong> </label><br>
+              <ion-input type="text" placeholder="Nombre equipo" [(ngModel)]="nombreEquipo" ></ion-input>
+              <Label><strong>Potencia equipo (W)</strong></Label><br>
+              <ion-input type="number" placeholder="Potencia equipo (W)" [(ngModel)]="potenciaEquipo" ></ion-input>
+              <label><strong>Factor funcionamiento equipo (%)</strong></label>
+              <ion-input type="number" placeholder="Factor funcionamiento equipo (%)" [(ngModel)]="factorEquipo" ></ion-input>
+              <ion-button style="width: 70%;margin:auto;" expand="block" fill="solid" shape="round" color="success" (click) = "addEquipo(nombreEquipo,potenciaEquipo, factorEquipo)">
+                Añadir Equipo
+              </ion-button><br>
+             
+            </fieldset>
+            
+          </ion-col>
+        </ion-row>
+        <ion-button (click)="addRecinto(nombreRecinto,temp_verano,temp_invierno,
+        hr_verano,hr_invierno,ida,nivelFiltro,largo, ancho, alto,volumen,cubierta,colorCubierta,tempeTechoVer, tempeTechoInv, supeTecho,suelo,numPersonas, cargaSensible,cargaLatente,caudaIda,
+        airRenovacion,mayoracion,lampara,potIluminacion )" expand="block" fill="solid" shape="round">
+          Crear Recinto
+          <ion-icon name="add-circle-outline" style="font-size: 2em;"></ion-icon>
+        </ion-button>
+        
+      </ion-grid>
+    </ion-header>
+  </ion-card>
+  
+</div>  
+</div> 
+
+ <!-------------------------------  RESULTADOS   --------------------------------------------------------->
+
+</ion-content>
+<ion-content [fullscreen]="true" [hidden] = "verResultados">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Resultados</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item>
+      <ion-label>Verano</ion-label>
+      <ion-label>Sensibles</ion-label>
+      <ion-label>Latentes</ion-label>
+      <ion-label>% del total</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas por  radiación vidrios (W)</ion-label>
+      <ion-label>{{ cargaSensibleRadiacionVidrio }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas a través de los cerramientos (W)</ion-label>
+      <ion-label>{{ cargaSensibleCerramientos }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas por infiltraciones y renovaciones de aire (W)</ion-label>
+      <ion-label>{{ cargaSensibleAire }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas por ocupación personas (W)</ion-label>
+      <ion-label>{{ cargaSensibleOcupacion }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas por  iluminación (W)</ion-label>
+      <ion-label>{{ cargaSensibleIluminacion }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas por  equipamiento(W)</ion-label>
+      <ion-label>{{ cargaSensibleEquipamiento}}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Carga térmica total sensible (W)</ion-label>
+      <ion-label>{{ cargaTotalSensibleRefrigeracion }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Carga térmica total latente (W)</ion-label>
+      <ion-label></ion-label>
+      <ion-label>{{ this.cargaTotalLatenteRefrigeracion }}</ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Potencia refrigeración (W)</ion-label>
+      <ion-label>{{ potenciaRefrigeracion }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Invierno</ion-label>
+      <ion-label>Sensibles</ion-label>
+      <ion-label>Latentes</ion-label>
+      <ion-label>% del total</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas a través de los cerramientos (W)</ion-label>
+      <ion-label>{{ cargaSensibleCerramientosInv }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cargas térmicas por infiltraciones y renovaciones de aire (W)</ion-label>
+      <ion-label>{{ cargaSensibleAireInv }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Carga térmica total sensible (W)</ion-label>
+      <ion-label>{{ cargaTotalSensibleCalefaccion }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Potencia calorífica (W)</ion-label>
+      <ion-label>{{ this.potenciaCalefaccion }}</ion-label>
+      <ion-label></ion-label>
+      <ion-label></ion-label>
+    </ion-item>
+</ion-list>
+</ion-content>
+<ion-content [hidden] = true>
+  <table class="tabla-personalizada">
+    <thead>
+      <tr>
+        <th>Encabezado 1</th>
+        <th>Encabezado 2</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr>
+        <td>Valor 1</td>
+        <td>Valor 2</td>
+      </tr>
+      <!-- Agrega más filas según sea necesario -->
+    </tbody>
+  </table>
+</ion-content>

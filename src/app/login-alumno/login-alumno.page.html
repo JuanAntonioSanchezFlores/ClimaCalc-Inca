@@ -1,0 +1,33 @@
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <img alt="Logo" src='/assets/logoApp.JPG' width="200px" />
+      <h3 style="width:90%;text-align: center;"><strong>ALUMNO</strong></h3>
+    </ion-toolbar>
+  </ion-header>
+  <br />
+  <br />
+  <div style="text-align:center;">
+    <img alt="Usuario" src='/assets/usuario.png' />
+  </div>
+  <br />
+  <br />
+  <ion-card>
+    <ion-list>
+      <ion-item>
+
+
+        <ion-input type="email" [(ngModel)]="email" label="E-mail"></ion-input>
+      </ion-item>
+
+      <ion-item>
+
+        <ion-input type="password" [(ngModel)]="password" label="Contraseña"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="login(email, password)" style="padding-left: 2%;padding-right: 2%;">Iniciar sesión</ion-button>
+    <br />
+    <ion-label style="padding-left: 2%;">Recuérdame</ion-label>
+    <ion-checkbox [(ngModel)]="rememberPassword" style="padding-left: 2%;"></ion-checkbox>
+  </ion-card>
+</ion-content>

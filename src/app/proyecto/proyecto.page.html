@@ -1,0 +1,282 @@
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <img alt="Logo" src='/assets/logoApp.JPG' width="100px" style="padding-left:10px;padding-top:10px;"/>
+      <div (click)="logout()">
+        <h3 style="width:90%;text-align: center;"><strong>Crear Nuevo Proyecto</strong></h3>
+        <h5 style="text-align: right;">variable global{{ variableGlobal}}<ion-icon name="log-in-outline"
+            class="icono"></ion-icon></h5>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <form action="">
+    <fieldset style="width:95%;margin:auto">
+      <legend>Datos del proyecto:</legend>
+      <!--<ion-input label="Fecha" type="datetime-local" label-placement="floating" fill="solid" placeholder="Fecha" #fecha></ion-input>-->
+      <ion-input Label="Fecha" type="datetime-local" label-placement="floating" fill="solid" placeholder="Fecha" required
+        #fecha></ion-input>
+      <ion-input label="Titulo del proyecto" label-placement="floating" fill="solid" placeholder="Título"
+        #titulo></ion-input>
+      <ion-input label="Proyectista" label-placement="floating" fill="solid" placeholder="Nombre proyectista"
+        #proyectista></ion-input>
+      <ion-input label="Cliente" label-placement="floating" fill="solid" placeholder="Nombre cliente"
+        #cliente></ion-input>
+      <ion-textarea label="Observaciones" placeholder="Introduzca sus observaciones aqui" #observaciones></ion-textarea>
+    </fieldset><br>
+    <fieldset style="width:95%;margin:auto">
+      <legend>Datos de la ciudad</legend>
+      <!-- <ion-item>
+         <ion-select label="Ciudad" [(ngModel)]="selectedCity" [ngModelOptions]="{ standalone: true }"> -->
+          <ion-searchbar (ionInput)="onSearch($event)" [(ngModel)]="textoBusqueda" [ngModelOptions]="{standalone: true}" placeholder="Elija ciudad"></ion-searchbar>
+
+          <ion-list *ngIf="showLocalidades">
+            <ion-item *ngFor="let localidad of localidadesFiltradas"  (click)="selectLocalidad(localidad)">
+              {{ localidad.nombre }}
+            </ion-item>
+          </ion-list>
+
+          <!-- <ion-select-option *ngFor="let localidad of localidadesFiltradas" [value]="localidad">
+            {{ localidad.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>-->
+      <ion-input type="number" label="Altitud" label-placement="floating" fill="solid" min="0" max="10000"
+        [value]="selectedCity?.altitud" #altitud></ion-input>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-input type="number" label="Tª exterior verano(ºC)" min="-100" max="100" label-placement="floating" [(ngModel)] = "tempExteriorV" (ionChange)="setTempSueloVer()"  [ngModelOptions]="{standalone: true}"
+              fill="solid" [value]="selectedCity?.temp_ext_ver" placeholder="0"  #t_exteriorV></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input type="number" label="Tª exterior invierno(ºC)" min="-100" max="100" label-placement="floating" [(ngModel)] = "tempExteriorI" (ionChange)="setTempSueloInv()" [ngModelOptions]="{standalone: true}"
+              fill="solid" placeholder="0" [value]="selectedCity?.temp_ext_inv" #t_exteriorI></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-input type="number" label="H.R. exterior verano(%)" min="0" max="100" label-placement="floating"
+              fill="solid" placeholder="0" [value]="selectedCity?.hr_ext_ver" #h_relativaV></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input type="number" label="H.R. exterior invierno(%)" min="0" max="100" label-placement="floating"
+              fill="solid" placeholder="0" [value]="selectedCity?.hr_ext_inv" #h_relativaI></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-input type="number" label="Tª suelo verano(ºC)" min="-100" max="100" label-placement="floating"
+              fill="solid" placeholder="0"
+              [value]="selectedCity?.temp_ext_ver !== null ? ((selectedCity.temp_ext_ver || 0) + 15) / 2 : null" [ngModel]="tempSueloVerano" [ngModelOptions]="{standalone: true}"
+              readonly #temp_suelo_V></ion-input>
+          </ion-col>
+          <ion-col size="6">
+            <ion-input type="number" label="Tª suelo invierno(ºC)" min="-100" max="100" label-placement="floating"
+              fill="solid" placeholder="0"
+              [value]="selectedCity?.temp_ext_inv !== null ? ((selectedCity.temp_ext_inv || 0) + 15) / 2 : null" [ngModel]="tempSueloInvierno" [ngModelOptions]="{standalone: true}"
+              readonly #temp_suelo_I></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </fieldset><br>
+    <fieldset style="width:95%;margin:auto">
+
+      <legend>Coeficiente de transmision de calor de los cerramientos</legend>
+      <ion-select label="Zona Climatica" [(ngModel)]="selectedZone" [ngModelOptions]="{ standalone: true }"
+        [value]="selectedCity?.['zona climatica']" #zonaClimatica>
+        <ion-select-option value="A">A</ion-select-option>
+        <ion-select-option value="B">B</ion-select-option>
+        <ion-select-option value="C">C</ion-select-option>
+        <ion-select-option value="D">D</ion-select-option>
+        <ion-select-option value="E">E</ion-select-option>
+        <ion-select-option value="F">F</ion-select-option>
+      </ion-select>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+
+            <span style="position: relative;">
+              U<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">S
+              </span>&nbsp;&nbsp;- U<span style="position: absolute; bottom: -0.8ex; font-size: smaller;">M</span>
+              <img id="click-trigger" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Muros y suelos en contacto con el aire exterior</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="usum" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+            <span style="position: relative;">
+              U<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">C</span>
+              <img id="click-trigger2" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger2" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Cubiertas o tejados en contacto con el aire exterior</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="uc" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+            <span style="position: relative;">
+              U<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">T </span>
+              <img id="click-trigger3" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger3" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Muros,suelos y cubiertas en contacto con espacios no habitables o con
+                  el terreno</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="utumd" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+          </ion-col>
+
+          <ion-col size="4">
+            <span style="position: relative;">
+              U<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">MD</span>
+              <img id="click-trigger4" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger4" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Medianerias o particiones interiores pertenecientes a la envolvente
+                  térmica</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="utumd" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+            <span style="position: relative;">
+              U<span
+                style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">H</span>&nbsp;&nbsp;*
+              <img id="click-trigger5" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger5" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Huecos (conjunto de marco, vidrio y, en su caso, cajon de
+                  persiana)*<br>*Los huecos con uso de escaparate en unidades de uso con actividad comercial pueden
+                  incrementar el valor en un 50%</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="uh" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+            <span style="position: relative;">
+              U<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">P</span>
+              <img id="click-trigger6" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger6" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Puertas con superficie semitransparente igual o inferior al
+                  50%</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="up" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+          </ion-col>
+          <ion-col size="4">
+            <span style="position: relative;">
+              T<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">PH</span>
+              <img id="click-trigger7" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger7" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Tabiques interiores entre unidades del mismo uso (Particiones
+                  horizontales)</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="uph" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+            <span style="position: relative;">
+              T<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">PV</span>
+              <img id="click-trigger8" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger8" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Tabiques interiores entre unidades del mismo uso (Particiones
+                  verticales)</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="upv" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+            <span style="position: relative;">
+              T<span style="position: absolute; bottom: -0.8ex; font-size: smaller;margin-right: 2px;">PHV</span>
+              <img id="click-trigger9" src="assets/iconoInfo.png" width="20px"
+                style="float: right;margin-right: 10px;" />
+            </span>
+            <ion-popover trigger="click-trigger9" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">Entre unidades de uso y zonas comunes (Particiones horizontales y
+                  verticales)</ion-content>
+              </ng-template>
+            </ion-popover>
+            <br>
+            <div data-mdb-input-init class="form-outline">
+              <input type="number" class="form-control" [(ngModel)]="uphv" [ngModelOptions]="{ standalone: true }" />
+            </div>
+            <br>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </fieldset><br>
+    <fieldset style="width:95%;margin:auto">
+      <legend>Calidad del aire exterior</legend>
+      <span style="position: relative;">
+        ODA
+        <img id="click-trigger10" src="assets/iconoInfo.png" width="20px" style="float: right;margin-right: 10px;" />
+      </span>
+      <ion-popover trigger="click-trigger10" triggerAction="click">
+        <ng-template>
+          <ion-content class="ion-padding"><strong>ODA 1:</strong>aire puro que se ensucia sólo temporalmente (por
+            ejemplo, polen)<br />
+            <strong>ODA 2:</strong>aire con concentraciones altas de partículas y/o de gases contaminantes<br />
+            <strong>ODA 3:</strong>aire con concetraciones muy altas de gases contaminantes (ODA 3G) y o de partículas
+            (ODA 3P)</ion-content>
+        </ng-template>
+      </ion-popover>
+      <ion-select placeholder="Seleccione ODA" #oda>
+        <ion-select-option value="oda1"><strong>ODA 1</strong></ion-select-option>
+        <ion-select-option value="oda2"><strong>ODA 2</strong></ion-select-option>
+        <ion-select-option value="oda3"><strong>ODA 3</strong></ion-select-option>
+      </ion-select>
+    </fieldset><br>
+    <ion-button style="width:70%;margin: auto;"expand="block" (click)="addProyecto(fecha,titulo, proyectista, cliente, observaciones, selectedCity,
+    altitud, zonaClimatica, t_exteriorV, t_exteriorI, h_relativaV,
+    h_relativaI, temp_suelo_V, temp_suelo_I, oda,recintos)">Guardar</ion-button>
+  </form>
+  <br>
+  <br>
+</ion-content>
+

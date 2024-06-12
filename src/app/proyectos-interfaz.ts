@@ -1,0 +1,28 @@
+export interface ProyectosInterfaz {
+  id?:string,
+  fecha:any,
+  titulo:any,
+  proyectista:any,
+  cliente:any,
+  observaciones:any,
+  ciudad:any,
+  altitud:any,
+  zonaClimatica:any,
+  t_exteriorV:any,
+  t_exteriorI:any,
+  h_relativaV:any,
+  h_relativaI:any,
+  temp_suelo_V:any,
+  temp_suelo_I:any,
+  usum:any,
+  uc:any,
+  utumd:any,
+  uh:any,
+  up:any,
+  uph:any,
+  upv:any,
+  uphv:any,
+  oda:any,
+  recintos:any
+
+}

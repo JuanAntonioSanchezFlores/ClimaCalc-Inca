@@ -1,0 +1,109 @@
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <img alt="Logo" src='/assets/logo.png' width="100px" />
+      <div (click)="logout()">
+        <h3 style="width:90%;text-align: center;"><strong>Proyectos</strong></h3>
+        <h5 style="text-align: right;">variable global{{ email }}<ion-icon name="log-in-outline" class="icono"></ion-icon></h5>
+      </div>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref = "/home" text="Atrás" mode="ios" color="dark"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-button (click)="nuevoProyecto()" expand="block" style="margin-top:20px;width:70%;margin:auto;padding-top:20px;">Crear nuevo proyecto
+    <ion-icon name="add-circle"></ion-icon>
+  </ion-button>
+  <br/>
+  <fieldset style="width:90%;margin:auto" [hidden] = 'vistaProyectos'>
+    <legend>Listado de proyectos:</legend>
+
+    <ion-list *ngFor="let proyecto of listaProyectos" >
+      <!--<ion-item *ngIf="proyecto.titulo == variableRecibida || !variableRecibida">-->
+        <ion-card style="width:90%;margin: auto;" (click)="verProyecto()">
+          <ion-grid>
+            <ion-card-header>
+              <ion-grid >
+                <ion-row id="{{proyecto.id}}" style="display: none;">
+                  <ion-col style="display: inline-flex;" (click)="actualizarProyecto(proyecto.id)">
+                    <ion-icon name="pencil-outline" style="font-size: 1em"></ion-icon>
+                    <label>Editar</label>
+                  </ion-col>
+                  <ion-col style="display: inline-flex;" (click)="click()">
+                    <ion-icon name="copy-outline" style="font-size: 1em"></ion-icon>
+                    <label>Copiar</label>
+                  </ion-col>
+                  <ion-col style="display: inline-flex;" (click)="click()">
+                    <ion-icon name="print-outline" style="font-size: 1em"></ion-icon>
+                    <label>Imprimir</label>
+                  </ion-col>
+                  <ion-col style="display: inline-flex;" (click)="borrarProyecto(proyecto.id)">
+                    <ion-icon name="trash-outline" style="font-size: 1em"></ion-icon>
+                    <label>Borrar</label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-row>
+                  <ion-card-title>
+                  <ion-col style="width: 90%;">
+                    <strong>{{proyecto.titulo}}</strong> 
+                  </ion-col>
+                  <ion-col style="width: 30%;">
+                    <ion-icon name="ellipsis-vertical-outline" (click)="iconoPuntos(proyecto.id)" style="align-self: flex-end;"></ion-icon>
+                   </ion-col>
+                  </ion-card-title>
+                  </ion-row>
+                
+              </ion-card-header>
+            
+            <ion-row>
+              <ion-card-content >
+  
+                    <p><strong>Fecha:</strong>{{proyecto.fecha}}</p>
+                    <p><strong>Cliente:</strong>{{proyecto.cliente}}</p>
+                    <p><strong>Proyectista:</strong>{{proyecto.proyectista}}</p>
+                    <p><strong>Ciudad:</strong>{{proyecto.ciudad}} </p>
+                    <div  [hidden] = "mostrarProyecto">
+                      <p><strong>Observaciones:</strong>{{proyecto.observaciones}}</p><br>
+                      <label>Datos de la ciudad</label>
+                      <hr class="thick-hr">
+                      <p><strong>Ciudad:</strong>  {{ proyecto.ciudad }}</p>
+                      <p><strong>Altitud:</strong>  {{ proyecto.altitud }} m. </p>
+                      <p><strong>Temperatura exterior verano:</strong> {{proyecto.t_exteriorV}} ºC</p>
+                      <p><strong>Temperatura exterior invireno:</strong> {{proyecto.t_exteriorI}} ºC</p>
+                      <p><strong>Humedad relativa exterior verano:</strong> {{proyecto.h_relativaV}} %</p>
+                      <p><strong>Humedad relativa exterior invierno:</strong> {{proyecto.h_relativaI}} %</p>
+                      <p><strong>Temperatura suelo verano:</strong> {{proyecto.temp_suelo_V}} ºC</p>
+                      <p><strong>Temperatura suelo invierno:</strong> {{proyecto.temp_suelo_I}} ºC</p>
+                     <br>
+                      <label>Coeficiente de transmisión de calor de los cerramientos</label>
+                      <hr class="thick-hr"> 
+                     <p><strong>Zona climática:</strong> {{proyecto.zonaClimatica}}</p>
+                      <p><strong>Us-Um:</strong> {{proyecto.usum}}</p>
+                      <p><strong>Umd:</strong> {{proyecto.utumd}}</p>
+                      <p><strong>Uc:</strong> {{proyecto.uc}}</p>
+                      <p><strong>Uh:</strong> {{proyecto.uh}}</p>
+                      <p><strong>Ut:</strong> {{proyecto.utumd}}</p>
+                      <p><strong>Up:</strong> {{proyecto.up}}</p>
+                      <p><strong>Tph:</strong> {{proyecto.uph}}</p>
+                      <p><strong>Tpv:</strong> {{proyecto.upv}}</p>
+                      <p><strong>Tphv:</strong> {{proyecto.uphv}}</p>
+                      <br>
+                      <label>Calidad del aire exterior</label>
+                      <hr class="thick-hr">
+                      <p><strong>Oda:</strong> {{proyecto.oda}}</p>
+
+                    </div>
+                  </ion-card-content>
+                
+              </ion-row>
+          </ion-grid>
+          
+          <ion-button (click)="proyectoSeleccionado(proyecto.titulo, proyecto.id)"  expand="block"  fill="solid" shape="round" color="primary" >
+            Ver recintos
+          </ion-button>
+      </ion-card >
+    </ion-list>
+  </fieldset>
+
+</ion-content>

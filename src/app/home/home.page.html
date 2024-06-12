@@ -1,0 +1,39 @@
+<ion-content style="background-color: aquamarine !important;">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <img alt="Logo" src='/assets/logo.png' width="100px"/>
+      <h3 style="width:90%;padding-left: 2%;"><strong>App Climatización I.E.S Inca Garcilaso</strong></h3>
+      <h5 style="width:90%;padding-left:2%">(Accede como Administrador o Alumno)</h5>
+      </ion-toolbar>
+  </ion-header>
+
+  <br>
+  <br>
+  <ion-text style="margin-top: 0px;margin-bottom: 0px;padding:0px;height:80px;margin:auto;">
+    <h1 style="text-align: center;">Bienvenido a la aplicación</h1>
+    <p style="text-align: center;">Elija su rol para el acceso</p>
+  </ion-text>
+
+  <ion-content style="height: 15%;margin-top: 0px;margin-bottom: 0px;">
+    <ion-tabs >
+      <ion-tab-bar slot="top" style="height: 80px;margin-top: 0px;" >
+
+        <ion-tab-button   class="registro-fondo" (click)="accesoAdmin()">
+          <ion-icon name="desktop-outline"  style="font-size: 32px;color:rgb(191, 13, 222)"></ion-icon>
+          <ion-text color="tertiary" style="font-size: 25px;color:rgb(4, 6, 128);"> Admin </ion-text>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+
+  </ion-content>
+  <ion-content>
+    <ion-tabs >
+      <ion-tab-bar slot="top" style="height: 80px;margin-top:0px;" >
+
+        <ion-tab-button   class="registro-fondo" (click)="accesoAlumno()">
+          <ion-icon name="construct-outline" style="font-size: 32px;color:rgb(191, 13, 222)"></ion-icon>
+          <ion-text color="tertiary" style="font-size: 25px;color:rgb(4, 6, 128);"> Alumno </ion-text>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-content>

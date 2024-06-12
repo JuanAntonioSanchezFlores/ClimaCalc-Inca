@@ -1,0 +1,37 @@
+.icono {
+    padding-left: 2px;
+    padding-top :2px ;
+    padding-bottom: 0px;
+    margin-right:5px;
+    font-size: 2em; /* Tamaño deseado */
+}
+
+.card {
+    width:100%;
+    background-color:red;
+}
+
+fieldset{
+    background-color: #f4f1ed ;
+    color: firebrick;
+    border-color: darkgoldenrod;
+    border:2px solid darkgoldenrod;
+    border-radius: 7px;
+    
+    padding-left: 5px;
+    margin: 5px;
+    
+  }
+
+legend{
+  color: darkblue;
+  font-weight: bold
+  }
+
+  .thick-hr {
+    border: 0;
+    height: 5px; /* Grosor del hr */
+    background: #333;
+    margin: 5px 0;
+  }
+ 

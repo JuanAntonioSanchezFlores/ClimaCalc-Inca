@@ -1,0 +1,28 @@
+.texto-grande {
+  font-size: 24px; /* Tamaño de letra grande personalizado */
+  height: 50px;
+  color: rgb(8, 8, 8);
+  border-width: 5px;
+  border-color: rgb(12, 0, 65);
+  width: 60%;
+  margin:auto;
+}
+
+.sombra {
+  box-shadow:
+    5px 5px 10px rgba(0, 0, 0, 0.5),
+    -5px -5px 10px rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
+}
+
+.registro-fondo{
+  width: 80%;
+  background-color: rgb(219, 234, 246);
+  border:2px solid rgb(191, 13, 222);
+  border-radius: 20px;
+  height: 70px;
+  margin:10px;
+  box-shadow:
+    5px 5px 10px rgba(0, 0, 0, 0.5),
+    -5px -5px 10px rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,1053 @@
+ 
+[
+    {
+  "id": 1,
+  "nombre": "Álava (Vitoria \/ Aeropuerto de Foronda)",
+  "temp_ext_ver": 30.1,
+  "hr_ext_ver": 49,
+  "temp_ext_inv": -2.4,
+  "hr_ext_inv": 96,
+  "altitud": 508,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 2,
+  "nombre": "Albacete (Los Llanos-Base Aérea)",
+  "temp_ext_ver": 34.2,
+  "hr_ext_ver": 25,
+  "temp_ext_inv": -3,
+  "hr_ext_inv": 92.3,
+  "altitud": 704,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 3,
+  "nombre": "Albacete (Hellín)",
+  "temp_ext_ver": 36.7,
+  "hr_ext_ver": 27,
+  "temp_ext_inv": 1.5,
+  "hr_ext_inv": 70.4,
+  "altitud": 520,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 4,
+  "nombre": "Alicante (Ciudad Jardín)",
+  "temp_ext_ver": 29.1,
+  "hr_ext_ver": 70,
+  "temp_ext_inv": 4.4,
+  "hr_ext_inv": 78,
+  "altitud": 82,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 5,
+  "nombre": "Alicante (El Altet)",
+  "temp_ext_ver": 31.1,
+  "hr_ext_ver": 42,
+  "temp_ext_inv": 4.1,
+  "hr_ext_inv": 74.5,
+  "altitud": 31,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 6,
+  "nombre": "Almería",
+  "temp_ext_ver": 28.8,
+  "hr_ext_ver": 69,
+  "temp_ext_inv": 7.5,
+  "hr_ext_inv": 67,
+  "altitud": 20,
+  "zona_climatica": "A"
+ },
+ {
+  "id": 7,
+  "nombre": "Ávila (Observatorio)",
+  "temp_ext_ver": 30.8,
+  "hr_ext_ver": 30,
+  "temp_ext_inv": -4.5,
+  "hr_ext_inv": 85.3,
+  "altitud": 1130,
+  "zona_climatica": "E"
+ },
+ {
+  "id": 8,
+  "nombre": "Badajoz (Talavera \/ Base Aérea)",
+  "temp_ext_ver": 36.6,
+  "hr_ext_ver": 33,
+  "temp_ext_inv": 0.3,
+  "hr_ext_inv": 92,
+  "altitud": 185,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 9,
+  "nombre": "Baleares (Escorca \/ Monasterio Lluc)",
+  "temp_ext_ver": 32,
+  "hr_ext_ver": 45,
+  "temp_ext_inv": -0.9,
+  "hr_ext_inv": 96.2,
+  "altitud": 490,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 10,
+  "nombre": "Baleares (Palma \/ Aeropuerto Son San Juan)",
+  "temp_ext_ver": 32.2,
+  "hr_ext_ver": 47,
+  "temp_ext_inv": 1.5,
+  "hr_ext_inv": 92.6,
+  "altitud": 4,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 11,
+  "nombre": "Baleares (Palma \/ Centro Meteorológico)",
+  "temp_ext_ver": 29.3,
+  "hr_ext_ver": 73,
+  "temp_ext_inv": 6.3,
+  "hr_ext_inv": 80,
+  "altitud": 3,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 12,
+  "nombre": "Baleares (Felanitx \/ Faro Portocolom)",
+  "temp_ext_ver": 29.9,
+  "hr_ext_ver": 72,
+  "temp_ext_inv": 5.7,
+  "hr_ext_inv": 87.7,
+  "altitud": 17,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 13,
+  "nombre": "Baleares (Capdepera \/ Faro)",
+  "temp_ext_ver": 29.7,
+  "hr_ext_ver": 69,
+  "temp_ext_inv": 7.4,
+  "hr_ext_inv": 77,
+  "altitud": 70,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 14,
+  "nombre": "Baleares (Pollensa \/ Aeródromo)",
+  "temp_ext_ver": 30.8,
+  "hr_ext_ver": 59,
+  "temp_ext_inv": 4.1,
+  "hr_ext_inv": 91.2,
+  "altitud": 2,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 15,
+  "nombre": "Baleares (Mahón \/ Aeropuerto de Menorca)",
+  "temp_ext_ver": 30.2,
+  "hr_ext_ver": 52,
+  "temp_ext_inv": 5.6,
+  "hr_ext_inv": 78.6,
+  "altitud": 85,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 16,
+  "nombre": "Baleares (San José \/ Aeropuerto de Ibiza)",
+  "temp_ext_ver": 29.6,
+  "hr_ext_ver": 72,
+  "temp_ext_inv": 5.7,
+  "hr_ext_inv": 85,
+  "altitud": 16,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 17,
+  "nombre": "Barcelona (Aeropuerto del El Prat)",
+  "temp_ext_ver": 30,
+  "hr_ext_ver": 65,
+  "temp_ext_inv": 2.7,
+  "hr_ext_inv": 70.2,
+  "altitud": 6,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 18,
+  "nombre": "Barcelona (Fabra)",
+  "temp_ext_ver": 30.3,
+  "hr_ext_ver": 53,
+  "temp_ext_inv": 2.1,
+  "hr_ext_inv": 64,
+  "altitud": 412,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 19,
+  "nombre": "Barcelona (Granollers)",
+  "temp_ext_ver": 32.2,
+  "hr_ext_ver": 41,
+  "temp_ext_inv": 1.2,
+  "hr_ext_inv": 75.2,
+  "altitud": 154,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 20,
+  "nombre": "Burgos (Villafría)",
+  "temp_ext_ver": 31.4,
+  "hr_ext_ver": 35,
+  "temp_ext_inv": -4.2,
+  "hr_ext_inv": 91.6,
+  "altitud": 890,
+  "zona_climatica": "E"
+ },
+ {
+  "id": 21,
+  "nombre": "Cáceres (Carretera Trujillo)",
+  "temp_ext_ver": 35.6,
+  "hr_ext_ver": 31,
+  "temp_ext_inv": 1.2,
+  "hr_ext_inv": 84,
+  "altitud": 405,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 22,
+  "nombre": "Cádiz (Rota \/ Base Naval)",
+  "temp_ext_ver": 31,
+  "hr_ext_ver": 57,
+  "temp_ext_inv": 4.2,
+  "hr_ext_inv": 83,
+  "altitud": 21,
+  "zona_climatica": "A"
+ },
+ {
+  "id": 23,
+  "nombre": "Cádiz (Jerez de la Frontera \/ Aeropuerto)",
+  "temp_ext_ver": 3.2,
+  "hr_ext_ver": 42,
+  "temp_ext_inv": 2.9,
+  "hr_ext_inv": 90,
+  "altitud": 27,
+  "zona_climatica": "A"
+ },
+ {
+  "id": 24,
+  "nombre": "Cádiz (Cortadura)",
+  "temp_ext_ver": 29.1,
+  "hr_ext_ver": 60,
+  "temp_ext_inv": 7.6,
+  "hr_ext_inv": 78,
+  "altitud": 8,
+  "zona_climatica": "A"
+ },
+ {
+  "id": 25,
+  "nombre": "Castellón de la Plana (Almazora)",
+  "temp_ext_ver": 30.1,
+  "hr_ext_ver": 68,
+  "temp_ext_inv": 4.4,
+  "hr_ext_inv": 64,
+  "altitud": 35,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 26,
+  "nombre": "Ciudad Real (Escuela de Magisterio)",
+  "temp_ext_ver": 35.6,
+  "hr_ext_ver": 31,
+  "temp_ext_inv": -1.3,
+  "hr_ext_inv": 89,
+  "altitud": 627,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 27,
+  "nombre": "Córdoba (Aeropuerto)",
+  "temp_ext_ver": 37.1,
+  "hr_ext_ver": 35,
+  "temp_ext_inv": 1.4,
+  "hr_ext_inv": 90,
+  "altitud": 91,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 28,
+  "nombre": "A Coruña (Santiago de compostela \/ Labacolla)",
+  "temp_ext_ver": 28.4,
+  "hr_ext_ver": 53,
+  "temp_ext_inv": 1.2,
+  "hr_ext_inv": 90,
+  "altitud": 364,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 29,
+  "nombre": "A Coruña (Estación Completa)",
+  "temp_ext_ver": 24.1,
+  "hr_ext_ver": 63,
+  "temp_ext_inv": 5.6,
+  "hr_ext_inv": 77,
+  "altitud": 58,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 30,
+  "nombre": "A Coruña (Aeropuerto)",
+  "temp_ext_ver": 26.1,
+  "hr_ext_ver": 59,
+  "temp_ext_inv": 1.4,
+  "hr_ext_inv": 93,
+  "altitud": 97,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 31,
+  "nombre": "A Coruña (Cabo Vilán)",
+  "temp_ext_ver": 21.1,
+  "hr_ext_ver": 74,
+  "temp_ext_inv": 5.3,
+  "hr_ext_inv": 68.6,
+  "altitud": 50,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 32,
+  "nombre": "Cuenca",
+  "temp_ext_ver": 33.1,
+  "hr_ext_ver": 26,
+  "temp_ext_inv": -3.1,
+  "hr_ext_inv": 78.9,
+  "altitud": 956,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 33,
+  "nombre": "Girona (Aeropuerto de Girona \/ Costa Brava)",
+  "temp_ext_ver": 30.7,
+  "hr_ext_ver": 52,
+  "temp_ext_inv": -1.9,
+  "hr_ext_inv": 86,
+  "altitud": 127,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 34,
+  "nombre": "Granada (Base Aérea)",
+  "temp_ext_ver": 33.6,
+  "hr_ext_ver": 35,
+  "temp_ext_inv": -0.6,
+  "hr_ext_inv": 84,
+  "altitud": 687,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 35,
+  "nombre": "Granada (Aeropuerto)",
+  "temp_ext_ver": 33.6,
+  "hr_ext_ver": 36,
+  "temp_ext_inv": -2.4,
+  "hr_ext_inv": 91,
+  "altitud": 570,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 36,
+  "nombre": "Guadalajara (Molina de Aragón)",
+  "temp_ext_ver": 31.8,
+  "hr_ext_ver": 35,
+  "temp_ext_inv": -8,
+  "hr_ext_inv": 91,
+  "altitud": 1063,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 37,
+  "nombre": "Guipuzcoa (San Sebastián \/ Aeropuerto Fuenterrabia)",
+  "temp_ext_ver": 28.1,
+  "hr_ext_ver": 62,
+  "temp_ext_inv": 1,
+  "hr_ext_inv": 90,
+  "altitud": 8,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 38,
+  "nombre": "Guipuzcoa (San Sebastián \/ Igueldo)",
+  "temp_ext_ver": 26.1,
+  "hr_ext_ver": 66,
+  "temp_ext_inv": 1,
+  "hr_ext_inv": 82,
+  "altitud": 252,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 39,
+  "nombre": "Huelva (Ronda Este)",
+  "temp_ext_ver": 34.4,
+  "hr_ext_ver": 38,
+  "temp_ext_inv": 3.6,
+  "hr_ext_inv": 87.1,
+  "altitud": 19,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 40,
+  "nombre": "Huesca (Monflorite)",
+  "temp_ext_ver": 33.4,
+  "hr_ext_ver": 36,
+  "temp_ext_inv": -2.5,
+  "hr_ext_inv": 86.3,
+  "altitud": 541,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 41,
+  "nombre": "Jaén (Cerro de los Lírios)",
+  "temp_ext_ver": 35,
+  "hr_ext_ver": 37,
+  "temp_ext_inv": 2.6,
+  "hr_ext_inv": 74.7,
+  "altitud": 580,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 42,
+  "nombre": "León (Virgen del Camino)",
+  "temp_ext_ver": 30,
+  "hr_ext_ver": 35,
+  "temp_ext_inv": -3.8,
+  "hr_ext_inv": 89.2,
+  "altitud": 916,
+  "zona_climatica": "E"
+ },
+ {
+  "id": 43,
+  "nombre": "León (Ponferrada)",
+  "temp_ext_ver": 32.6,
+  "hr_ext_ver": 41,
+  "temp_ext_inv": -3.4,
+  "hr_ext_inv": 94.4,
+  "altitud": 534,
+  "zona_climatica": "E"
+ },
+ {
+  "id": 44,
+  "nombre": "Lleida (Observatorio)",
+  "temp_ext_ver": 34,
+  "hr_ext_ver": 36,
+  "temp_ext_inv": -2.8,
+  "hr_ext_inv": 95.5,
+  "altitud": 192,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 45,
+  "nombre": "La Rioja (Logroño \/ Agoncillo)",
+  "temp_ext_ver": 32.5,
+  "hr_ext_ver": 42,
+  "temp_ext_inv": -1.1,
+  "hr_ext_inv": 93,
+  "altitud": 352,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 46,
+  "nombre": "Lugo (Rozas \/ Aeródromo)",
+  "temp_ext_ver": 28,
+  "hr_ext_ver": 53,
+  "temp_ext_inv": -2.5,
+  "hr_ext_inv": 95.6,
+  "altitud": 444,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 47,
+  "nombre": "Madrid (Navacerrada \/ Puerto) ",
+  "temp_ext_ver": 24.4,
+  "hr_ext_ver": 40,
+  "temp_ext_inv": -8.2,
+  "hr_ext_inv": 93,
+  "altitud": 1890,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 48,
+  "nombre": "Madrid (Barajas)",
+  "temp_ext_ver": 32.6,
+  "hr_ext_ver": 32,
+  "temp_ext_inv": -2.4,
+  "hr_ext_inv": 84,
+  "altitud": 582,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 49,
+  "nombre": "Madrid (Torrejón de Ardoz \/ Base Aérea)",
+  "temp_ext_ver": 33.9,
+  "hr_ext_ver": 34,
+  "temp_ext_inv": -2,
+  "hr_ext_inv": 86,
+  "altitud": 611,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 50,
+  "nombre": "Madrid (Colmenar Viejo \/ FAMET)",
+  "temp_ext_ver": 30.4,
+  "hr_ext_ver": 36,
+  "temp_ext_inv": -1,
+  "hr_ext_inv": 70,
+  "altitud": 1004,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 51,
+  "nombre": "Madrid (Retiro)",
+  "temp_ext_ver": 33,
+  "hr_ext_ver": 37,
+  "temp_ext_inv": 0.3,
+  "hr_ext_inv": 69,
+  "altitud": 667,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 52,
+  "nombre": "Madrid (Cuatro Vientos \/ Aeródromo)",
+  "temp_ext_ver": 33.6,
+  "hr_ext_ver": 31,
+  "temp_ext_inv": -0.1,
+  "hr_ext_inv": 77,
+  "altitud": 687,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 53,
+  "nombre": "Madrid (Getafe \/ Base Aérea)",
+  "temp_ext_ver": 33.6,
+  "hr_ext_ver": 31,
+  "temp_ext_inv": -0.8,
+  "hr_ext_inv": 84,
+  "altitud": 617,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 54,
+  "nombre": "Madrid (Aranjuez)",
+  "temp_ext_ver": 36.4,
+  "hr_ext_ver": 35,
+  "temp_ext_inv": -3.2,
+  "hr_ext_inv": 83,
+  "altitud": 520,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 55,
+  "nombre": "Madrid (Buitrago)",
+  "temp_ext_ver": 31.1,
+  "hr_ext_ver": 36,
+  "temp_ext_inv": -3.5,
+  "hr_ext_inv": 76.4,
+  "altitud": 974,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 56,
+  "nombre": "Madrid (Robledo de Chavela)",
+  "temp_ext_ver": 33.8,
+  "hr_ext_ver": 37,
+  "temp_ext_inv": -1.4,
+  "hr_ext_inv": 74.9,
+  "altitud": 790,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 57,
+  "nombre": "Málaga (Aeropuerto)",
+  "temp_ext_ver": 29.5,
+  "hr_ext_ver": 62,
+  "temp_ext_inv": 5.8,
+  "hr_ext_inv": 81,
+  "altitud": 7,
+  "zona_climatica": "A"
+ },
+ {
+  "id": 58,
+  "nombre": "Murcia (Águilas \/ Parque de Bomberos)",
+  "temp_ext_ver": 28.7,
+  "hr_ext_ver": 72,
+  "temp_ext_inv": 5.7,
+  "hr_ext_inv": 74,
+  "altitud": 26,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 59,
+  "nombre": "Murcia (Cartagena)",
+  "temp_ext_ver": 29.5,
+  "hr_ext_ver": 75,
+  "temp_ext_inv": 7.1,
+  "hr_ext_inv": 79,
+  "altitud": 17,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 60,
+  "nombre": "Murcia (Murcia \/ San Javier)",
+  "temp_ext_ver": 28.8,
+  "hr_ext_ver": 80,
+  "temp_ext_inv": 4,
+  "hr_ext_inv": 87,
+  "altitud": 2,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 61,
+  "nombre": "Murcia (Cieza \/ Parque de Bomberos)",
+  "temp_ext_ver": 31.1,
+  "hr_ext_ver": 53,
+  "temp_ext_inv": 1.5,
+  "hr_ext_inv": 80,
+  "altitud": 265,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 62,
+  "nombre": "Murcia (Murcia)",
+  "temp_ext_ver": 32,
+  "hr_ext_ver": 53,
+  "temp_ext_inv": 3.5,
+  "hr_ext_inv": 80,
+  "altitud": 62,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 63,
+  "nombre": "Murcia (Lorca \/ CCA)",
+  "temp_ext_ver": 33.1,
+  "hr_ext_ver": 46,
+  "temp_ext_inv": 1.9,
+  "hr_ext_inv": 86,
+  "altitud": 320,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 64,
+  "nombre": "Murcia (Murcia \/ Alcantarilla)",
+  "temp_ext_ver": 32.3,
+  "hr_ext_ver": 52,
+  "temp_ext_inv": 2.2,
+  "hr_ext_inv": 85,
+  "altitud": 85,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 65,
+  "nombre": "Murcia (Yecla)",
+  "temp_ext_ver": 34,
+  "hr_ext_ver": 37,
+  "temp_ext_inv": 0.7,
+  "hr_ext_inv": 77,
+  "altitud": 590,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 66,
+  "nombre": "Navarra (Pamplona \/ Noain)",
+  "temp_ext_ver": 31.3,
+  "hr_ext_ver": 41,
+  "temp_ext_inv": -2,
+  "hr_ext_inv": 87,
+  "altitud": 452,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 67,
+  "nombre": "Navarra (Sartaguda)",
+  "temp_ext_ver": 32.4,
+  "hr_ext_ver": 46,
+  "temp_ext_inv": -1.1,
+  "hr_ext_inv": 90.8,
+  "altitud": 310,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 68,
+  "nombre": "Ourense (Ourense \/ Granxa Deputación)",
+  "temp_ext_ver": 33.9,
+  "hr_ext_ver": 38,
+  "temp_ext_inv": -1.4,
+  "hr_ext_inv": 95,
+  "altitud": 143,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 69,
+  "nombre": "Asturias (Oviedo \/ El Cristo)",
+  "temp_ext_ver": 25.8,
+  "hr_ext_ver": 68,
+  "temp_ext_inv": 1.2,
+  "hr_ext_inv": 89,
+  "altitud": 336,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 70,
+  "nombre": "Asturias (Ranón \/ Aeropuerto)",
+  "temp_ext_ver": 23.1,
+  "hr_ext_ver": 74,
+  "temp_ext_inv": 3,
+  "hr_ext_inv": 84,
+  "altitud": 127,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 71,
+  "nombre": "Palencia (Autilla del Pino \/ Observatorio Meteorológico)",
+  "temp_ext_ver": 30.8,
+  "hr_ext_ver": 34,
+  "temp_ext_inv": -3.6,
+  "hr_ext_inv": 85,
+  "altitud": 860,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 72,
+  "nombre": "Las Palmas de Gran Canaria (San Bartolomé Tijarana \/ Hotel Faro Maspalomas)",
+  "temp_ext_ver": 25.5,
+  "hr_ext_ver": 78,
+  "temp_ext_inv": 14.3,
+  "hr_ext_inv": 71,
+  "altitud": 25,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 73,
+  "nombre": "Las Palmas de Gran Canaria (San Bartolomé \/ Aeropuerto de Lanzarote)",
+  "temp_ext_ver": 29.4,
+  "hr_ext_ver": 52,
+  "temp_ext_inv": 13.5,
+  "hr_ext_inv": 77.2,
+  "altitud": 9,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 74,
+  "nombre": "Las Palmas de Gran Canaria (Puerto del Rosario \/ Aeropuerto EL Matorral)",
+  "temp_ext_ver": 28.1,
+  "hr_ext_ver": 57,
+  "temp_ext_inv": 13.2,
+  "hr_ext_inv": 74.8,
+  "altitud": 29,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 75,
+  "nombre": "Las Palmas de Gran Canaria (Telde \/ Aeropuerto de Gran Canaria-Gando)",
+  "temp_ext_ver": 28.1,
+  "hr_ext_ver": 52,
+  "temp_ext_inv": 14.4,
+  "hr_ext_inv": 72.4,
+  "altitud": 24,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 76,
+  "nombre": "Pontevedra (Pontevedra \/ Mourente)",
+  "temp_ext_ver": 29.4,
+  "hr_ext_ver": 53,
+  "temp_ext_inv": 3.3,
+  "hr_ext_inv": 78,
+  "altitud": 107,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 77,
+  "nombre": "Pontevedra (Vigo \/ Peinador)",
+  "temp_ext_ver": 29,
+  "hr_ext_ver": 50,
+  "temp_ext_inv": 2.8,
+  "hr_ext_inv": 83,
+  "altitud": 255,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 78,
+  "nombre": "Salamanca (Salamanca \/ Matacán)",
+  "temp_ext_ver": 32,
+  "hr_ext_ver": 32,
+  "temp_ext_inv": -4.4,
+  "hr_ext_inv": 94.6,
+  "altitud": 790,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 79,
+  "nombre": "Santa Cruz de Tenerife (Mazo \/ Aeropuerto)",
+  "temp_ext_ver": 27,
+  "hr_ext_ver": 68,
+  "temp_ext_inv": 14.6,
+  "hr_ext_inv": 77.9,
+  "altitud": 40,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 80,
+  "nombre": "Santa Cruz de Tenerife (Reina Sofia \/ Aeropuerto Tenerife Sur)",
+  "temp_ext_ver": 30,
+  "hr_ext_ver": 41,
+  "temp_ext_inv": 14.1,
+  "hr_ext_inv": 72.3,
+  "altitud": 64,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 81,
+  "nombre": "Santa Cruz de Tenerife (Los Rodeos \/ Aeropuerto Tenerife Norte)",
+  "temp_ext_ver": 28.6,
+  "hr_ext_ver": 43,
+  "temp_ext_inv": 8.9,
+  "hr_ext_inv": 84.7,
+  "altitud": 617,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 82,
+  "nombre": "Santa Cruz de Tenerife (Santa Cruz de Tenerife)",
+  "temp_ext_ver": 30,
+  "hr_ext_ver": 51,
+  "temp_ext_inv": 14.6,
+  "hr_ext_inv": 70,
+  "altitud": 36,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 83,
+  "nombre": "Santa Cruz de Tenerife (Cangrejos \/ Aeropuerto)",
+  "temp_ext_ver": 26.9,
+  "hr_ext_ver": 71,
+  "temp_ext_inv": 16.3,
+  "hr_ext_inv": 75.7,
+  "altitud": 30,
+  "zona_climatica": "F"
+ },
+ {
+  "id": 84,
+  "nombre": "Cantabria (Parayas \/ Aeropuerto)",
+  "temp_ext_ver": 25.7,
+  "hr_ext_ver": 70,
+  "temp_ext_inv": 2.6,
+  "hr_ext_inv": 90,
+  "altitud": 6,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 85,
+  "nombre": "Cantabria (Santander \/ CMT)",
+  "temp_ext_ver": 24.1,
+  "hr_ext_ver": 79,
+  "temp_ext_inv": 4.7,
+  "hr_ext_inv": 81,
+  "altitud": 52,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 86,
+  "nombre": "Segovia (Observatorio)",
+  "temp_ext_ver": 32.1,
+  "hr_ext_ver": 27,
+  "temp_ext_inv": -3.4,
+  "hr_ext_inv": 85.1,
+  "altitud": 1005,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 87,
+  "nombre": "Sevilla (Aeropuerto)",
+  "temp_ext_ver": 37.6,
+  "hr_ext_ver": 31,
+  "temp_ext_inv": 4.5,
+  "hr_ext_inv": 79.4,
+  "altitud": 26,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 88,
+  "nombre": "Sevilla (Morón de la Frontera \/ Base Aérea)",
+  "temp_ext_ver": 36.2,
+  "hr_ext_ver": 37,
+  "temp_ext_inv": 2,
+  "hr_ext_inv": 87,
+  "altitud": 87,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 89,
+  "nombre": "Soria (Observatorio)",
+  "temp_ext_ver": 31,
+  "hr_ext_ver": 32,
+  "temp_ext_inv": -4.8,
+  "hr_ext_inv": 84.2,
+  "altitud": 1082,
+  "zona_climatica": "E"
+ },
+ {
+  "id": 90,
+  "nombre": "Soria (Vinuesa)",
+  "temp_ext_ver": 28.7,
+  "hr_ext_ver": 42,
+  "temp_ext_inv": -5.6,
+  "hr_ext_inv": 84,
+  "altitud": 1197,
+  "zona_climatica": "E"
+ },
+ {
+  "id": 91,
+  "nombre": "Tarragona (Tortosa \/ Observatorio de El Ebro)",
+  "temp_ext_ver": 33.4,
+  "hr_ext_ver": 43,
+  "temp_ext_inv": 2.4,
+  "hr_ext_inv": 83,
+  "altitud": 48,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 92,
+  "nombre": "Tarragona (Reus \/ Aeropuerto)",
+  "temp_ext_ver": 30.8,
+  "hr_ext_ver": 45,
+  "temp_ext_inv": 0.5,
+  "hr_ext_inv": 82.1,
+  "altitud": 68,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 93,
+  "nombre": "Teruel (Capital)",
+  "temp_ext_ver": 30,
+  "hr_ext_ver": 45,
+  "temp_ext_inv": -6.1,
+  "hr_ext_inv": 94,
+  "altitud": 900,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 94,
+  "nombre": "Toledo (Buenavista)",
+  "temp_ext_ver": 35.1,
+  "hr_ext_ver": 30,
+  "temp_ext_inv": -1.2,
+  "hr_ext_inv": 82,
+  "altitud": 516,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 95,
+  "nombre": "Toledo (Madridejos)",
+  "temp_ext_ver": 35.3,
+  "hr_ext_ver": 35,
+  "temp_ext_inv": -3.6,
+  "hr_ext_inv": 85.6,
+  "altitud": 690,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 96,
+  "nombre": "Valencia (Capital)",
+  "temp_ext_ver": 31.3,
+  "hr_ext_ver": 48,
+  "temp_ext_inv": 5.5,
+  "hr_ext_inv": 73.1,
+  "altitud": 11,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 97,
+  "nombre": "Valencia (Manises)",
+  "temp_ext_ver": 30.3,
+  "hr_ext_ver": 65,
+  "temp_ext_inv": 2.6,
+  "hr_ext_inv": 81,
+  "altitud": 57,
+  "zona_climatica": "B"
+ },
+ {
+  "id": 98,
+  "nombre": "Valladolid (Observatorio)",
+  "temp_ext_ver": 32.4,
+  "hr_ext_ver": 33,
+  "temp_ext_inv": -2.8,
+  "hr_ext_inv": 89,
+  "altitud": 735,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 99,
+  "nombre": "Valladolid (Villanubla)",
+  "temp_ext_ver": 31.8,
+  "hr_ext_ver": 30,
+  "temp_ext_inv": -4,
+  "hr_ext_inv": 95.1,
+  "altitud": 846,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 100,
+  "nombre": "Vizcaya (Bilbao \/ Aeropuerto Sondica)",
+  "temp_ext_ver": 29.1,
+  "hr_ext_ver": 51,
+  "temp_ext_inv": 1.2,
+  "hr_ext_inv": 89,
+  "altitud": 39,
+  "zona_climatica": "C"
+ },
+ {
+  "id": 101,
+  "nombre": "Zamora (Observatorio)",
+  "temp_ext_ver": 33,
+  "hr_ext_ver": 31,
+  "temp_ext_inv": -3.2,
+  "hr_ext_inv": 94.6,
+  "altitud": 656,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 102,
+  "nombre": "Zaragoza (Aeropuerto)",
+  "temp_ext_ver": 33.4,
+  "hr_ext_ver": 40,
+  "temp_ext_inv": -1.1,
+  "hr_ext_inv": 89,
+  "altitud": 247,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 103,
+  "nombre": "Zaragoza (Daroca \/ Observatorio)",
+  "temp_ext_ver": 32,
+  "hr_ext_ver": 39,
+  "temp_ext_inv": -4.6,
+  "hr_ext_inv": 87,
+  "altitud": 779,
+  "zona_climatica": "D"
+ },
+ {
+  "id": 104,
+  "nombre": "Ceuta",
+  "temp_ext_ver": 26.8,
+  "hr_ext_ver": 76,
+  "temp_ext_inv": 15.3,
+  "hr_ext_inv": 72,
+  "altitud": 10,
+  "zona_climatica": "A"
+ },
+ {
+  "id": 105,
+  "nombre": "Melilla",
+  "temp_ext_ver": 28.1,
+  "hr_ext_ver": 75,
+  "temp_ext_inv": 8.4,
+  "hr_ext_inv": 80,
+  "altitud": 55,
+  "zona_climatica": "A"
+ }
+ ]
