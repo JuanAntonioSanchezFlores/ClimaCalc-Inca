@@ -29,11 +29,11 @@
                     <ion-icon name="pencil-outline" style="font-size: 1em"></ion-icon>
                     <label>Editar</label>
                   </ion-col>
-                  <ion-col style="display: inline-flex;" (click)="click()">
+                  <ion-col style="display: inline-flex;" >
                     <ion-icon name="copy-outline" style="font-size: 1em"></ion-icon>
                     <label>Copiar</label>
                   </ion-col>
-                  <ion-col style="display: inline-flex;" (click)="click()">
+                  <ion-col style="display: inline-flex;">
                     <ion-icon name="print-outline" style="font-size: 1em"></ion-icon>
                     <label>Imprimir</label>
                   </ion-col>
@@ -82,7 +82,7 @@
     </ion-card-header>
     <ion-card-content style="padding-left: 10px;">
       <label >Nombre del recinto:&nbsp; 
-      <ion-input type="text" placeholder="Introduzca nombre del recinto" style="font-size: 18px;" #nombreRecinto></ion-input>
+      <ion-input type="text" placeholder="Introduzca nombre del recinto" style="font-size: 18px;"  [(ngModel)] = "nombreRecint" #nombreRecinto></ion-input>
     </label>
     </ion-card-content>
   </ion-card >
@@ -251,10 +251,10 @@
                         </ng-template>
                       </ion-popover>
                       <ion-select  multiple="false" name="coor1" placeholder="Select vidrio" class="select"[(ngModel)] = "tipoVidrio" (ionChange) = "getTipVidrio(tipVidrio.name)" #tipVidrio>
-                        <ion-select-option value="Normal">Normal</ion-select-option>
-                        <ion-select-option value="Doble">Doble</ion-select-option>
-                        <ion-select-option value="Triple">Triple</ion-select-option>
-                        <ion-select-option value="Baja emisividad">Baja emisividad</ion-select-option>
+                        <ion-select-option value="normal">Normal</ion-select-option>
+                        <ion-select-option value="doble">Doble</ion-select-option>
+                        <ion-select-option value="triple">Triple</ion-select-option>
+                        <ion-select-option value="baja emisividad">Baja emisividad</ion-select-option>
                       </ion-select>
                     </div>
                 </ion-col>
@@ -612,39 +612,8 @@
                 <!-------------------------------- CUBIERTA --------------------> 
             <fieldset>
               <legend>Techo</legend>
-              <ion-grid >
-                <ion-row>
-                  <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>Seleccione orientación techo:</strong></label></ion-col>
-                </ion-row>
-               
-              
-                <ion-grid class="imagen">
-                  <ion-row>
-                    <ion-col size="5"></ion-col>
-                    <ion-col size="2"><strong><label class="coordenadas"  (click)="seleccionCoordenadaNTecho()" >N</label></strong></ion-col>
-                    <ion-col size="5"></ion-col>
-                  </ion-row><br>
-                  <ion-row>
-                    <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaOTecho()" >O</label></strong></ion-col>
-                    <ion-col size="8"></ion-col>
-                    <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaETecho()" >E</label></strong></ion-col>
-                  </ion-row><br>
-                  <ion-row>
-                    <ion-col size="5"></ion-col>
-                    <ion-col size="2"><strong><label class="coordenadas" (click)="seleccionCoordenadaSTecho()" >S</label></strong></ion-col>
-                    <ion-col size="5"></ion-col>
-                  </ion-row>
-                </ion-grid>
-              </ion-grid><br>
-              <div id="coor5">
-              <ion-grid >
-                <ion-row>
-                  <ion-col size="12"><label style="display: flex;align-items: center;text-align: center;"><strong>Orientación techo seleccionada: <span style = "color:green">{{ orientacionTecho }}</span></strong></label></ion-col>
-                </ion-row>
-              
-                
-              </ion-grid>
-            </div>
+             
+            
              <ion-grid >
               <!--- FILA 1 -------------------->
                   <ion-row>
@@ -854,9 +823,7 @@
             
           </ion-col>
         </ion-row>
-        <ion-button (click)="addRecinto(nombreRecinto,temp_verano,temp_invierno,
-        hr_verano,hr_invierno,ida,nivelFiltro,largo, ancho, alto,volumen,cubierta,colorCubierta,tempeTechoVer, tempeTechoInv, supeTecho,suelo,numPersonas, cargaSensible,cargaLatente,caudaIda,
-        airRenovacion,mayoracion,lampara,potIluminacion )" expand="block" fill="solid" shape="round">
+        <ion-button (click)="addRecinto()" expand="block" fill="solid" shape="round">
           Crear Recinto
           <ion-icon name="add-circle-outline" style="font-size: 2em;"></ion-icon>
         </ion-button>

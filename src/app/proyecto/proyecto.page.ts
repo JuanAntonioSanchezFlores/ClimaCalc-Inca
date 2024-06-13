@@ -90,7 +90,7 @@ export class ProyectoPage implements OnInit {
 
     addProyecto(fecha:IonInput,titulo: IonInput, proyectista:IonInput, cliente: IonInput, observaciones: IonTextarea,ciudad:object,
       altitud: IonInput, zonaClimatica: IonSelect, t_exteriorV: IonInput, t_exteriorI:IonInput, h_relativaV:IonInput, 
-      h_relativaI:IonInput, temp_suelo_V:IonInput, temp_suelo_I:IonInput, oda:IonSelect,recintos:any ){
+      h_relativaI:IonInput, temp_suelo_V:IonInput, temp_suelo_I:IonInput, oda:IonSelect ){
      const proyecto: ProyectosInterfaz = {
       fecha: fecha.value,titulo: titulo.value, proyectista: proyectista.value, cliente: cliente.value, observaciones:observaciones.value,ciudad: this.selectedCity['nombre'],
       altitud: altitud.value, zonaClimatica: zonaClimatica.value, t_exteriorV: t_exteriorV.value, t_exteriorI:t_exteriorI.value, h_relativaV:h_relativaV.value,

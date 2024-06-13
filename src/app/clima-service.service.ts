@@ -81,6 +81,7 @@ export class ClimaServiceService {
   agregarRecintoAProyecto(proyectoId: string, recinto: any) {
     // Obtener referencia al documento del proyecto
     const proyectoRef = this.firestore.collection('proyectos').doc(proyectoId);
+    console.log("antes de actualizar:", recinto)
 
     // Obtener los datos actuales del proyecto
     proyectoRef.get().subscribe(snapshot => {
@@ -91,7 +92,10 @@ export class ClimaServiceService {
         let recintos: any[] = proyectoData.recintos || [];
 
         // Agregar el nuevo recinto a la lista
+
+       
         recintos.push(recinto);
+       
 
         // Actualizar el campo 'recintos' en el documento del proyecto
         proyectoRef.update({ recintos: recintos })

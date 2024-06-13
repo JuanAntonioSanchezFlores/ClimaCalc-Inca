@@ -9,13 +9,12 @@ export interface RecintosInterfaz {
   nivel_filtro:any,
   largo:any,
   ancho:any,
-  alto:any
+  alto:any,
   volumen:any,
   cerramiento1: any,
   cerramiento2:any,
   cerramiento3:any,
   cerramiento4:any,
-  orientacionTecho: any,
   cubierta:any, //TEcho interior o exterior
   color_cubierta:any, //Color techo
   tempTechoVer:any,
@@ -35,6 +34,7 @@ export interface RecintosInterfaz {
   caudalAire:any,
   lamparas:any, //Fluorescente o Led
   potenciaIluminacion:any,
-  mayoracion:any
+  mayoracion:any,
   equipos:any
+ 
 }
