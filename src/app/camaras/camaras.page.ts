@@ -392,13 +392,13 @@ export class CamarasPage implements OnInit {
 
   setSupCerramiento() {
     this.supCerra = this.longitud * this.altura
-    this.listaParamCerramiento1[11] = this.supCerra
+    this.listaParamCerramiento1[10] = this.supCerra
     this.supCerra1 = this.anchura * this.altura
-    this.listaParamCerramiento2[11] = this.supCerra1
+    this.listaParamCerramiento2[10] = this.supCerra1
     this.supCerra2 = this.longitud * this.altura
-    this.listaParamCerramiento3[11] = this.supCerra2
+    this.listaParamCerramiento3[10] = this.supCerra2
     this.supCerra3 = this.anchura * this.altura
-    this.listaParamCerramiento4[11] = this.supCerra3
+    this.listaParamCerramiento4[10] = this.supCerra3
     this.supTecho = this.anchura * this.longitud
     this.supSuelo = this.anchura * this.longitud
     this.numePersonas = this.longitud * this.anchura / 2
@@ -1243,7 +1243,7 @@ export class CamarasPage implements OnInit {
     let sueloExtInt = this.getValorCerrExtInt(this.proyecto, 'suelo')
 
     /*CARGA SENSIBLE EQUIPAMIENTOS ***************************/
-    let cargaEquipamiento = this.getCargaEquipo()
+    const cargaEquipamiento = this.getCargaEquipo()
 
 
     /* RESULTADO SUMA EQUIPOS********************************************/
