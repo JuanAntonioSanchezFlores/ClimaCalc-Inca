@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <br>
-<ion-content style="width: 98% !important;" >
+<ion-content style="width: 98% !important;" [hidden]="recintosCard">
   <div style="width: 100%;">
   <fieldset [hidden] = 'vistaRecintos'>
     <ion-button (click)="crearRecinto()" expand="block" fill="solid" shape="round">
@@ -16,11 +16,9 @@
     </ion-button>
     <legend>Listado de recintos:</legend>
 
-    <ion-list *ngFor="let recinto of recintos" style="display:inline-block;">
+    <ion-list *ngFor="let recinto of recintos">
       <!--<ion-item *ngIf="proyecto.titulo == variableRecibida || !variableRecibida">-->
-        <ion-card >
-          <ion-grid >
-            <ion-card-header>
+        <ion-card style="width:90%" (click)="mostrarDatosRecinto()">
               <ion-grid >
                 <ion-row #recintoId id="{{recinto.idRec}}" style="display:none;" >
                   <ion-col style="display: inline-flex;" (click)="actualizarRecinto(nombreRecinto,temp_verano,temp_invierno,
@@ -49,25 +47,137 @@
                     <label>{{recinto.nombre}}</label>
                   </ion-col>
                   <ion-col >
-                    <ion-icon name="ellipsis-vertical-outline" (click)="iconoPuntos(recinto.idRec)" style="align-self: flex-end;"></ion-icon>
+                    <ion-icon name="ellipsis-vertical-outline" (click)="iconoPuntos(recinto.idRec)" style="align-self: flex-end;width:50px;"></ion-icon>
                   </ion-col>
                   </ion-card-title>
                   </ion-row>
-                <ion-row>
-                  <ion-col size="12">
-                    <div style="width:30%; margin:auto;padding-top:10px; margin-bottom: 0px;">
-                      <ion-button (click)='actualizarRecinto(nombreRecinto,temp_verano,temp_invierno,
-                      hr_verano,hr_invierno,ida,nivelFiltro,largo, ancho, alto,volumen,cubierta,colorCubierta,tempeTechoVer, tempeTechoInv, supeTecho,suelo,numPersonas, cargaSensible,cargaLatente,caudaIda,
-                      airRenovacion,mayoracion,lampara,potIluminacion)' fill="solid" shape="round" color="success" size="small">
-                        Ver 
-                      </ion-button>
-                    </div>
-                  </ion-col>
-                 
-                </ion-row>
-              </ion-card-header>
-          </ion-grid>
-      </ion-card >
+                
+                   
+                      <ion-grid [hidden] = "datosRecinto">
+                        <ion-row>
+                          <ion-col size="12">
+                            <ion-text color="primary" class="ion-text-center">
+                              <h3>Verano</h3>
+                            </ion-text>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col size="8">Cargas Sensibles</ion-col>
+                          <ion-col size="2">(W)</ion-col>
+                          <ion-col size="2">(%)</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Radiación vidrios</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleRadiacionVidrio }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Transmisión cerramientos</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleCerramientos }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Infiltraciones y renovacion de aire</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleAire }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Ocupación</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleOcupacion }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Iluminación</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleIluminacion }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Equipamiento</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleEquipamiento }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Carga Total Sensible</ion-col>
+                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalSensibleRefrigeracion }}</strong></ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col size="8">Cargas Latentes</ion-col>
+                          <ion-col size="2">(W)</ion-col>
+                          <ion-col size="2">(%)</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Infiltracion y renovacion de aire</ion-col>
+                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaLatenteAire }}</strong></ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Ocupación</ion-col>
+                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaLatenteOcupacion }}</strong></ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Total latente refrigeración</ion-col>
+                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalLatenteRefrigeracion }}</strong></ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Potencia Refrigeración</ion-col>
+                          <ion-col size="3" class="textTabla"><strong style="color:blue">{{ recinto.potenciaRefrigeracion }}</strong></ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col size="12">
+                            <ion-text color="primary" class="ion-text-center">
+                              <h3>Invierno</h3>
+                            </ion-text>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col size="8">Cargas Sensibles</ion-col>
+                          <ion-col size="2">(W)</ion-col>
+                          <ion-col size="2">(%)</ion-col>
+                        </ion-row>
+                        <ion-row>
+                         
+                          <ion-col size="7" class="textTabla">Transmision cerramientos</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleCerramientosInv }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Infiltración y renovación de aire</ion-col>
+                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleAireInv }}</ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Total sensible calefacción</ion-col>
+                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalSensibleCalefaccion }}</strong></ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                        <ion-row>
+                          
+                          <ion-col size="7" class="textTabla">Potencia calefacción</ion-col>
+                          <ion-col size="3" class="textTabla"><strong style="color:orange">{{ recinto.potenciaCalefaccion }}</strong></ion-col>
+                          <ion-col size="2" class="textTabla">30</ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    
+              </ion-card >
+           
+           
     </ion-list>
   </fieldset>
 
@@ -835,125 +945,8 @@
 </div>  
 </div> 
 
- <!-------------------------------  RESULTADOS   --------------------------------------------------------->
+ <!-------------------------------  RESULTADOS  "verResultados" --------------------------------------------------------->
 
 </ion-content>
-<ion-content [fullscreen]="true" [hidden] = "verResultados">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Resultados</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-list>
-    <ion-item>
-      <ion-label>Verano</ion-label>
-      <ion-label>Sensibles</ion-label>
-      <ion-label>Latentes</ion-label>
-      <ion-label>% del total</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas por  radiación vidrios (W)</ion-label>
-      <ion-label>{{ cargaSensibleRadiacionVidrio }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas a través de los cerramientos (W)</ion-label>
-      <ion-label>{{ cargaSensibleCerramientos }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas por infiltraciones y renovaciones de aire (W)</ion-label>
-      <ion-label>{{ cargaSensibleAire }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas por ocupación personas (W)</ion-label>
-      <ion-label>{{ cargaSensibleOcupacion }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas por  iluminación (W)</ion-label>
-      <ion-label>{{ cargaSensibleIluminacion }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas por  equipamiento(W)</ion-label>
-      <ion-label>{{ cargaSensibleEquipamiento}}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Carga térmica total sensible (W)</ion-label>
-      <ion-label>{{ cargaTotalSensibleRefrigeracion }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Carga térmica total latente (W)</ion-label>
-      <ion-label></ion-label>
-      <ion-label>{{ this.cargaTotalLatenteRefrigeracion }}</ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Potencia refrigeración (W)</ion-label>
-      <ion-label>{{ potenciaRefrigeracion }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item>
-      <ion-label>Invierno</ion-label>
-      <ion-label>Sensibles</ion-label>
-      <ion-label>Latentes</ion-label>
-      <ion-label>% del total</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas a través de los cerramientos (W)</ion-label>
-      <ion-label>{{ cargaSensibleCerramientosInv }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cargas térmicas por infiltraciones y renovaciones de aire (W)</ion-label>
-      <ion-label>{{ cargaSensibleAireInv }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Carga térmica total sensible (W)</ion-label>
-      <ion-label>{{ cargaTotalSensibleCalefaccion }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Potencia calorífica (W)</ion-label>
-      <ion-label>{{ this.potenciaCalefaccion }}</ion-label>
-      <ion-label></ion-label>
-      <ion-label></ion-label>
-    </ion-item>
-</ion-list>
-</ion-content>
-<ion-content [hidden] = true>
-  <table class="tabla-personalizada">
-    <thead>
-      <tr>
-        <th>Encabezado 1</th>
-        <th>Encabezado 2</th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <tr>
-        <td>Valor 1</td>
-        <td>Valor 2</td>
-      </tr>
-      <!-- Agrega más filas según sea necesario -->
-    </tbody>
-  </table>
-</ion-content>
+
+

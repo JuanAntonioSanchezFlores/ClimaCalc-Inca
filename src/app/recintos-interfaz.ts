@@ -35,6 +35,19 @@ export interface RecintosInterfaz {
   lamparas:any, //Fluorescente o Led
   potenciaIluminacion:any,
   mayoracion:any,
-  equipos:any
- 
+  equipos:any,
+  cargaSensibleRadiacionVidrio:any,
+  cargaSensibleCerramientos:any, 
+  cargaSensibleAire:any,
+  cargaSensibleOcupacion:any,
+  cargaSensibleIluminacion:any, 
+  cargaSensibleEquipamiento:any,
+  cargaTotalSensibleRefrigeracion:any,
+  cargaTotalLatenteRefrigeracion:any,
+  potenciaRefrigeracion:any,
+  cargaSensibleCerramientosInv:any, 
+  cargaSensibleAireInv:any,
+  cargaTotalSensibleCalefaccion:any, 
+  potenciaCalefaccion:any
+  
 }

@@ -28,14 +28,16 @@ export class ProyectosPage implements OnInit {
 
   public idSelect: string='';
   listaProyectos:ProyectosInterfaz[]=[];
-  listaRecintos:RecintosInterfaz[]=[];
-  recinto!:RecintosInterfaz
+ 
+
   proyectoSelec:string=""
   
   proyectoId:any
 
   vistaProyectos = false
- 
+  potenciaRefrigeracionEdif:number = 0
+  potenciaCalefaccionEdif:number = 0
+
 
   mostrarProyecto:boolean = true
   public editar = true;
@@ -53,9 +55,11 @@ export class ProyectosPage implements OnInit {
       this.variableGlobal = this.globalService.usuarioRegistrado
       this.globalService.actualizar = this.actualizar
       
-      this.listarProyectos();
+      this.listarProyectos()
+      
       
 }
+
 
 verProyecto(){
   if(this.mostrarProyecto == true){
@@ -189,20 +193,6 @@ hola(){
           ...element.payload.doc.data()})
       });
       
-    })
-  }
-
-
-
-  listarRecintos(){
-    this.consulta.readDb('recintos').subscribe(res=>{
-      this.listaRecintos=[]; //Vaciamos la lista de proyectos para agregar la nueva obtenida de la DB
-      res.forEach((element:any)=>{
-        this.listaRecintos.push({
-          id: element.payload.doc.id,
-          ...element.payload.doc.data()})
-      });
-      console.log(this.listaRecintos);
     })
   }
 
