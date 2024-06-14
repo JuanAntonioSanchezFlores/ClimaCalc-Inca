@@ -7,7 +7,7 @@ import { RecintosInterfaz } from '../recintos-interfaz';
 import { ProyectosInterfaz } from '../proyectos-interfaz';
 import { IonInput, IonRadio, IonRadioGroup, IonSelect } from '@ionic/angular';
 import { ListaEquiposService } from '../lista-equipos.service';
-import { CommonModule } from '@angular/common';
+import { AlertController } from '@ionic/angular';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
@@ -48,7 +48,7 @@ export class CamarasPage implements OnInit {
   hrInvierno: number = 10
 
   nivelFiltracionRequerido: string="ida3"
-  filtro: string = ''
+  filtro: string = 'f5+f7'
   longitud: number = 10
   anchura: number = 5
   altura: number = 3
@@ -338,7 +338,7 @@ export class CamarasPage implements OnInit {
   
 
   constructor(private globalService: GlobalService, private paramRuta: ActivatedRoute, private consulta: ClimaServiceService,
-    private leeJson: HttpClient, private climaService: ClimaServiceService, private equiposList: ListaEquiposService,
+    private leeJson: HttpClient, private climaService: ClimaServiceService, private equiposList: ListaEquiposService, private alerta:AlertController
   ) {
     this.supTecho = this.longitud * this.altura
     this.supSuelo = this.longitud * this.altura
@@ -369,8 +369,39 @@ export class CamarasPage implements OnInit {
     this.vistaRecintos = false
   }
 
+  calculoPorcentaje(numero:number){
+
+  }
+
+  guardarRecinto(){
+    if(this.nombreRecint == '' || undefined || null){
+      this.alertaCampoNombre()
+    }
+  }
+
+  async alertaCampoNombre() {
+    const alert = await this.alerta.create({
+      header: 'Campo vacío',
+      message: 'El campo "Nombre del recinto" está vacío. Por favor, introduzca un nombre.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+
   mostrarDatosRecinto(){
    this.datosRecinto = false
+  }
+
+  async exitoAddEquipo() {
+    const alert = await this.alerta.create({
+      header: 'Éxito',
+      message: 'Equipo añadido correctamente.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   getIdRe() {
@@ -382,6 +413,7 @@ export class CamarasPage implements OnInit {
   addEquipo(nombre: string, potencia: number, factorFuncionamiento: number) {
     this.equiposList.agregarEquipo(nombre, potencia, factorFuncionamiento)
     console.log(this.equiposList.listaEquipos)
+    this.exitoAddEquipo()
   }
 
   getCargaEquipo() {
@@ -816,36 +848,42 @@ export class CamarasPage implements OnInit {
   }
 
   addRecinto() {
-    this.getIdRe()
-    let equiposList = this.equiposList.listaEquipos
-   this.getResultados(this.proyecto)
-      
-  
-
-    const recinto: RecintosInterfaz = {
-      idRec: this.idRe, nombre: this.nombreRecint, temp_verano: this.temp_int_ver,
-      temp_invierno: this.temp_int_inv, hr_verano: this.hr_int_ver, hr_invierno: this.hr_int_inv, ida: this.nivelFiltracionRequerido, nivel_filtro: this.filtro, largo: this.longitud, ancho: this.anchura, alto: this.altura,
-      volumen: this.calcVolumen, cerramiento1: this.listaParamCerramiento1, cerramiento2: this.listaParamCerramiento2, cerramiento3: this.listaParamCerramiento3, cerramiento4: this.listaParamCerramiento4, cubierta: this.cubiertaSeleccionada,
-      color_cubierta: this.colorCerramientoCubierta, tempTechoVer: this.tempTechoVer, tempTechoInv: this.tempTechoInv, supTecho: this.supTecho,
-      contieneVidrioTecho: this.vidrioSeleccionado4, superficieVidrioTecho: this.superficieVidrios4, tipoVidrio: this.tipoVidrio4, contienePuertasTecho: this.puertasVisible4, superficiePuertasTecho: this.superficiePuertas4,
-      suelo: this.sueloSeleccionado, supeSuelo: this.supSuelo, numPersonas: this.numePersonas, cargaSensible: this.cargSensible, cargaLatente: this.cargLatente, caudalIda: this.caudalIda,
-      caudalAire: this.aireRenovacion, lamparas: this.lamparaSeleccionada, potenciaIluminacion: this.potenciaIluminacion,mayoracion: this.factorSeguridad,  equipos:equiposList, 
-      cargaSensibleRadiacionVidrio:this.cargaSensibleRadiacionVidrio,cargaSensibleCerramientos:this.cargaSensibleCerramientos, cargaSensibleAire:this.cargaSensibleAire,
-      cargaSensibleOcupacion:this.cargaSensibleOcupacion, cargaSensibleIluminacion:this.cargaSensibleIluminacion, cargaSensibleEquipamiento:this.cargaSensibleEquipamiento,
-      cargaTotalSensibleRefrigeracion:this.cargaTotalSensibleRefrigeracion, cargaTotalLatenteRefrigeracion:this.cargaTotalLatenteRefrigeracion, potenciaRefrigeracion:this.potenciaRefrigeracion,
-      cargaSensibleCerramientosInv:this.cargaSensibleCerramientosInv, cargaSensibleAireInv:this.cargaSensibleAireInv, cargaTotalSensibleCalefaccion:this.cargaTotalSensibleCalefaccion,
-      potenciaCalefaccion:this.potenciaCalefaccion
-    }
-    console.log("idRec",this.idRe, "nombre:", this.nombreRecint, "temp_verano:",this.temp_int_ver,
-      "temp_invierno:", this.temp_int_inv, "hr_verano:", this.hr_int_ver, "hr_invierno:", this.hr_int_inv, "ida:", this.nivelFiltracionRequerido, "nivel_filtro:", this.filtro, "largo:", this.longitud, "ancho:", this.anchura, "alto:", this.altura,
-      "volumen:", this.calcVolumen, "cerramiento1:", this.listaParamCerramiento1, "cerramiento2:", this.listaParamCerramiento2, "cerramiento3:", this.listaParamCerramiento3, "cerramiento4:", this.listaParamCerramiento4, "cubierta:", this.cubiertaSeleccionada,
-      "color_cubierta:", this.colorCerramientoCubierta, "tempTechoVer:", this.tempTechoVer, "tempTechoInv:", this.tempTechoInv, "supTecho:", this.supTecho,
-      "contieneVidrioTecho:", this.vidrioSeleccionado4, "superficieVidrioTecho:", this.superficieVidrios4, "tipoVidrio:", this.tipoVidrio4, "contienePuertasTecho:", this.puertasVisible4, "superficiePuertasTecho:", this.superficiePuertas4,
-      "suelo:", this.sueloSeleccionado, "supeSuelo:", this.supSuelo, "numPersonas:", this.numePersonas, "cargaSensible:", this.cargSensible, "cargaLatente:", this.cargLatente, "caudalIda:", this.caudalIda,
-      "caudalAire:", this.aireRenovacion, "lamparas:",this.lamparaSeleccionada, "potenciaIluminacion:", this.potenciaIluminacion,"mayoracion:", this.factorSeguridad,  "equipos:", equiposList)
+    if(this.nombreRecint == ''){
+      this.alertaCampoNombre()
+    }else{
+      this.guardarRecinto()
+      this.getIdRe()
+      let equiposList = this.equiposList.listaEquipos
+     this.getResultados(this.proyecto)
+        
     
-    this.verResultados = false
-    this.climaService.agregarRecintoAProyecto(this.id, recinto)
+  
+      const recinto: RecintosInterfaz = {
+        idRec: this.idRe, nombre: this.nombreRecint, temp_verano: this.temp_int_ver,
+        temp_invierno: this.temp_int_inv, hr_verano: this.hr_int_ver, hr_invierno: this.hr_int_inv, ida: this.nivelFiltracionRequerido, nivel_filtro: this.filtro, largo: this.longitud, ancho: this.anchura, alto: this.altura,
+        volumen: this.calcVolumen, cerramiento1: this.listaParamCerramiento1, cerramiento2: this.listaParamCerramiento2, cerramiento3: this.listaParamCerramiento3, cerramiento4: this.listaParamCerramiento4, cubierta: this.cubiertaSeleccionada,
+        color_cubierta: this.colorCerramientoCubierta, tempTechoVer: this.tempTechoVer, tempTechoInv: this.tempTechoInv, supTecho: this.supTecho,
+        contieneVidrioTecho: this.vidrioSeleccionado4, superficieVidrioTecho: this.superficieVidrios4, tipoVidrio: this.tipoVidrio4, contienePuertasTecho: this.puertasVisible4, superficiePuertasTecho: this.superficiePuertas4,
+        suelo: this.sueloSeleccionado, supeSuelo: this.supSuelo, numPersonas: this.numePersonas, cargaSensible: this.cargSensible, cargaLatente: this.cargLatente, caudalIda: this.caudalIda,
+        caudalAire: this.aireRenovacion, lamparas: this.lamparaSeleccionada, potenciaIluminacion: this.potenciaIluminacion,mayoracion: this.factorSeguridad,  equipos:equiposList, 
+        cargaSensibleRadiacionVidrio:this.cargaSensibleRadiacionVidrio,cargaSensibleCerramientos:this.cargaSensibleCerramientos, cargaSensibleAire:this.cargaSensibleAire,
+        cargaSensibleOcupacion:this.cargaSensibleOcupacion, cargaSensibleIluminacion:this.cargaSensibleIluminacion, cargaSensibleEquipamiento:this.cargaSensibleEquipamiento,
+        cargaTotalSensibleRefrigeracion:this.cargaTotalSensibleRefrigeracion,cargaLatenteAire:this.cargaLatenteAire,cargaLatenteOcupacion:this.cargaLatenteOcupacion, cargaTotalLatenteRefrigeracion:this.cargaTotalLatenteRefrigeracion, potenciaRefrigeracion:this.potenciaRefrigeracion,
+        cargaSensibleCerramientosInv:this.cargaSensibleCerramientosInv, cargaSensibleAireInv:this.cargaSensibleAireInv, cargaTotalSensibleCalefaccion:this.cargaTotalSensibleCalefaccion,
+        potenciaCalefaccion:this.potenciaCalefaccion
+      }
+      console.log("idRec",this.idRe, "nombre:", this.nombreRecint, "temp_verano:",this.temp_int_ver,
+        "temp_invierno:", this.temp_int_inv, "hr_verano:", this.hr_int_ver, "hr_invierno:", this.hr_int_inv, "ida:", this.nivelFiltracionRequerido, "nivel_filtro:", this.filtro, "largo:", this.longitud, "ancho:", this.anchura, "alto:", this.altura,
+        "volumen:", this.calcVolumen, "cerramiento1:", this.listaParamCerramiento1, "cerramiento2:", this.listaParamCerramiento2, "cerramiento3:", this.listaParamCerramiento3, "cerramiento4:", this.listaParamCerramiento4, "cubierta:", this.cubiertaSeleccionada,
+        "color_cubierta:", this.colorCerramientoCubierta, "tempTechoVer:", this.tempTechoVer, "tempTechoInv:", this.tempTechoInv, "supTecho:", this.supTecho,
+        "contieneVidrioTecho:", this.vidrioSeleccionado4, "superficieVidrioTecho:", this.superficieVidrios4, "tipoVidrio:", this.tipoVidrio4, "contienePuertasTecho:", this.puertasVisible4, "superficiePuertasTecho:", this.superficiePuertas4,
+        "suelo:", this.sueloSeleccionado, "supeSuelo:", this.supSuelo, "numPersonas:", this.numePersonas, "cargaSensible:", this.cargSensible, "cargaLatente:", this.cargLatente, "caudalIda:", this.caudalIda,
+        "caudalAire:", this.aireRenovacion, "lamparas:",this.lamparaSeleccionada, "potenciaIluminacion:", this.potenciaIluminacion,"mayoracion:", this.factorSeguridad,  "equipos:", equiposList)
+      
+      this.verResultados = false
+      this.climaService.agregarRecintoAProyecto(this.id, recinto)
+    }
+   
 
   }
 

@@ -43,6 +43,8 @@ export interface RecintosInterfaz {
   cargaSensibleIluminacion:any, 
   cargaSensibleEquipamiento:any,
   cargaTotalSensibleRefrigeracion:any,
+  cargaLatenteAire:any,
+  cargaLatenteOcupacion:any,
   cargaTotalLatenteRefrigeracion:any,
   potenciaRefrigeracion:any,
   cargaSensibleCerramientosInv:any, 
