@@ -25,4 +25,10 @@ legend{
   font-style: oblique;
   font-size: 20;
 }
+ion-content, ion-header, ion-label, ion-input, ion-title, ion-item {
+  translate: no;
+}
 
+input, select, label, fieldset, form{
+  translate: no;
+}

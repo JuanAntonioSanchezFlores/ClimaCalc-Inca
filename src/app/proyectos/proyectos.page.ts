@@ -35,8 +35,8 @@ export class ProyectosPage implements OnInit {
   proyectoId:any
 
   vistaProyectos = false
-  potenciaRefrigeracionEdif:number = 0
-  potenciaCalefaccionEdif:number = 0
+ sumaRefrigeracion:any
+ sumaCalefaccion:any 
 
 
   mostrarProyecto:boolean = true
@@ -58,6 +58,7 @@ export class ProyectosPage implements OnInit {
       this.listarProyectos()
       
       
+      
 }
 
 
@@ -69,7 +70,15 @@ verProyecto(){
 }
 }
   
-
+sumarPotenciasCalefaccion(proyecto:ProyectosInterfaz){
+  this.sumaCalefaccion = 0
+  
+  for(let rec of proyecto.recintos){
+    console.log("potencia calefaccion", rec.potenciaCalefaccion)
+    this.sumaCalefaccion = rec.potenciaCalefaccion + this.sumaCalefaccion
+    }
+    console.log("Calefaccion: ", this.sumaCalefaccion)
+}
 
 nuevoProyecto(){
   this.globalService.actualizar = false

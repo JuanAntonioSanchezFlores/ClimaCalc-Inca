@@ -26,3 +26,10 @@
     5px 5px 10px rgba(0, 0, 0, 0.5),
     -5px -5px 10px rgba(255, 255, 255, 0.5);
 }
+ion-content, ion-header, ion-label, ion-input, ion-title, ion-item {
+  translate: no;
+}
+
+input, select, label, fieldset, form{
+  translate: no;
+}

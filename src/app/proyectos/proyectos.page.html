@@ -65,8 +65,8 @@
                     <p><strong>Ciudad:</strong>{{proyecto.ciudad}} </p>
                     <p><strong>Observaciones:</strong>{{proyecto.observaciones}}</p><br>
                     <p><strong>Nº de recintos:</strong>{{proyecto.recintos.length}} </p>
-                    <p><strong>Potencia Refrigeracion Edificio:</strong ><span style="color:blue;">{{potenciaRefrigeracionEdif}}</span></p><br>
-                    <p><strong>Potencia Calefacción Edificio:</strong ><span style="color:red">{{potenciaCalefaccionEdif}}</span></p><br>
+                    <p><strong>Potencia Refrigeracion Edificio:</strong ><span style="color:blue;">{{sumarPotenciasCalefaccion(proyecto)}}{{sumaCalefaccion}}</span></p><br>
+                    <p><strong>Potencia Calefacción Edificio:</strong ><span style="color:red">{{sumaCalefaccion}}</span></p><br>
                       <!-- Agrega aquí cualquier otra propiedad que quieras mostrar -->
                    
                     
