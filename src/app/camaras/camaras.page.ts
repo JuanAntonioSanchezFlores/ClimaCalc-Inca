@@ -222,21 +222,21 @@ export class CamarasPage implements OnInit {
   cargaTotalSensibleCalefaccion: number = 0
   potenciaCalefaccion: number = 0
 
-  cargaSensibleRadiacionVidrioF: number = 0
-  cargaSensibleCerramientosF: number = 0
-  cargaSensibleAireF:number = 0
-  cargaSensibleOcupacionF: number = 0
-  cargaSensibleIluminacionF: number = 0
-  cargaSensibleEquipamientoF: number = 0
-  cargaTotalSensibleRefrigeracionF: number = 0
-  cargaLatenteAireF: number = 0
-  cargaLatenteOcupacionF: number = 0
-  cargaTotalLatenteRefrigeracionF = 0
-  potenciaRefrigeracionF: number = 0
-  cargaSensibleCerramientosInvF: number = 0
-  cargaSensibleAireInvF: number = 0
-  cargaTotalSensibleCalefaccionF: number = 0
-  potenciaCalefaccionF: number = 0
+  cargaSensibleRadiacionVidrioF: string = ''
+  cargaSensibleCerramientosF: string = ''
+  cargaSensibleAireF:string = ''
+  cargaSensibleOcupacionF: string = ''
+  cargaSensibleIluminacionF: string = ''
+  cargaSensibleEquipamientoF: string = ''
+  cargaTotalSensibleRefrigeracionF: string = ''
+  cargaLatenteAireF: string = ''
+  cargaLatenteOcupacionF: string = ''
+  cargaTotalLatenteRefrigeracionF:string = ''
+  potenciaRefrigeracionF: string = ''
+  cargaSensibleCerramientosInvF: string = ''
+  cargaSensibleAireInvF: string = ''
+  cargaTotalSensibleCalefaccionF: string = ''
+  potenciaCalefaccionF: string = ''
 
   verResultados: boolean = true
   potenciaRefrigeracionEdif:number = 0
@@ -866,11 +866,11 @@ export class CamarasPage implements OnInit {
         contieneVidrioTecho: this.vidrioSeleccionado4, superficieVidrioTecho: this.superficieVidrios4, tipoVidrio: this.tipoVidrio4, contienePuertasTecho: this.puertasVisible4, superficiePuertasTecho: this.superficiePuertas4,
         suelo: this.sueloSeleccionado, supeSuelo: this.supSuelo, numPersonas: this.numePersonas, cargaSensible: this.cargSensible, cargaLatente: this.cargLatente, caudalIda: this.caudalIda,
         caudalAire: this.aireRenovacion, lamparas: this.lamparaSeleccionada, potenciaIluminacion: this.potenciaIluminacion,mayoracion: this.factorSeguridad,  equipos:equiposList, 
-        cargaSensibleRadiacionVidrio:this.cargaSensibleRadiacionVidrio,cargaSensibleCerramientos:this.cargaSensibleCerramientos, cargaSensibleAire:this.cargaSensibleAire,
-        cargaSensibleOcupacion:this.cargaSensibleOcupacion, cargaSensibleIluminacion:this.cargaSensibleIluminacion, cargaSensibleEquipamiento:this.cargaSensibleEquipamiento,
-        cargaTotalSensibleRefrigeracion:this.cargaTotalSensibleRefrigeracion,cargaLatenteAire:this.cargaLatenteAire,cargaLatenteOcupacion:this.cargaLatenteOcupacion, cargaTotalLatenteRefrigeracion:this.cargaTotalLatenteRefrigeracion, potenciaRefrigeracion:this.potenciaRefrigeracion,
-        cargaSensibleCerramientosInv:this.cargaSensibleCerramientosInv, cargaSensibleAireInv:this.cargaSensibleAireInv, cargaTotalSensibleCalefaccion:this.cargaTotalSensibleCalefaccion,
-        potenciaCalefaccion:this.potenciaCalefaccion
+        cargaSensibleRadiacionVidrio:this.cargaSensibleRadiacionVidrioF,cargaSensibleCerramientos:this.cargaSensibleCerramientosF, cargaSensibleAire:this.cargaSensibleAireF,
+        cargaSensibleOcupacion:this.cargaSensibleOcupacionF, cargaSensibleIluminacion:this.cargaSensibleIluminacionF, cargaSensibleEquipamiento:this.cargaSensibleEquipamientoF,
+        cargaTotalSensibleRefrigeracion:this.cargaTotalSensibleRefrigeracionF,cargaLatenteAire:this.cargaLatenteAireF,cargaLatenteOcupacion:this.cargaLatenteOcupacionF, cargaTotalLatenteRefrigeracion:this.cargaTotalLatenteRefrigeracionF, potenciaRefrigeracion:this.potenciaRefrigeracionF,
+        cargaSensibleCerramientosInv:this.cargaSensibleCerramientosInvF, cargaSensibleAireInv:this.cargaSensibleAireInvF, cargaTotalSensibleCalefaccion:this.cargaTotalSensibleCalefaccionF,
+        potenciaCalefaccion:this.potenciaCalefaccionF
       }
       console.log("idRec",this.idRe, "nombre:", this.nombreRecint, "temp_verano:",this.temp_int_ver,
         "temp_invierno:", this.temp_int_inv, "hr_verano:", this.hr_int_ver, "hr_invierno:", this.hr_int_inv, "ida:", this.nivelFiltracionRequerido, "nivel_filtro:", this.filtro, "largo:", this.longitud, "ancho:", this.anchura, "alto:", this.altura,
@@ -1371,7 +1371,7 @@ export class CamarasPage implements OnInit {
     this.cargaSensibleRadiacionVidrio = (this.valorCoor1 * this.superficieVidrios * this.tipoVidrioValor) + (this.valorCoor2 * this.superficieVidrios1 * this.tipoVidrioValor1) +
       (this.valorCoor3 * this.superficieVidrios2 * this.tipoVidrioValor2) + (this.valorCoor4 * this.superficieVidrios3 * this.tipoVidrioValor3) + 
       (this.valorCoor5 * this.superficieVidrios4 * this.tipoVidrioValor4)
-      
+      this.cargaSensibleRadiacionVidrioF = this.cargaSensibleRadiacionVidrio.toFixed(2)
   
     console.log("Radiaciones de vidrio:-------------------------------")
     console.log(this.valorCoor1, this.superficieVidrios, this.tipoVidrioValor)
@@ -1394,6 +1394,7 @@ export class CamarasPage implements OnInit {
       (cerramientoExtInt4 * (this.supCerra3 - this.superficieVidrios3 - this.superficiePuertas3) * (this.temp_int_ver - this.tCerVer3)) + (this.proyecto.uh * this.superficieVidrios3 * (this.temp_int_ver - this.tCerVer3)) + (this.proyecto.up * this.superficiePuertas3 * (this.temp_int_ver - this.tCerVer3)) + 
       (techoExtInt * (this.supTecho - this.superficieVidrios4 - this.superficiePuertas4) * (this.temp_int_ver - this.tempTechoVer)) + (this.proyecto.uh * this.superficieVidrios4 * (this.temp_int_ver - this.tempTechoVer)) + (this.proyecto.up * this.superficiePuertas4 * (this.temp_int_ver - this.tempTechoVer)) + 
       (sueloExtInt * (this.supSuelo) * (this.temp_int_ver - this.tempSueloVer)))
+      this.cargaSensibleCerramientosF = this.cargaSensibleCerramientos.toFixed(2)
 
       let c1 = (cerramientoExtInt1 * (this.supCerra - this.superficieVidrios - this.superficiePuertas) * (this.temp_int_ver - this.tCerVer)) + (this.proyecto.uh * this.superficieVidrios * (this.temp_int_ver - this.tCerVer)) + (this.proyecto.up * this.superficiePuertas * (this.temp_int_ver - this.tCerVer))
       let c2 = (cerramientoExtInt2 * (this.supCerra1 - this.superficieVidrios1 - this.superficiePuertas1) * (this.temp_int_ver - this.tCerVer1)) + (this.proyecto.uh * this.superficieVidrios1 * (this.temp_int_ver - this.tCerVer1)) + (this.proyecto.up * this.superficiePuertas1 * (this.temp_int_ver - this.tCerVer1))
@@ -1411,76 +1412,69 @@ export class CamarasPage implements OnInit {
     console.log("6: ", c6 )
     
     
-
-
-
-
-
-
-    
-    console.log("CerramientoExtInt: ", cerramientoExtInt1, "CerramientoExtInt: ", cerramientoExtInt2, "CerramientoExtInt: ", cerramientoExtInt3)
     //Esta formula es correcta No comprobada
     this.cargaSensibleAire = (this.aireRenovacion / 3600) * (1 / this.volum_espe_int_ver) * (this.entalpia_ext_ver_sens - this.entalpia_int_ver_sens) * 1.1
-    
+    this.cargaSensibleAireF = this.cargaSensibleAire.toFixed(2)
     
     console.log("2 :", this.cargaSensibleAire)
     //OJO Carga sensible por persona (W/persona) crear si actividad sedentaria: 70*ocupacion; si trabajo activo: 150*ocupacion
     //OJO Carga latente por persona (W/persona) crear si actividad sedentaria: 50*ocupacion; si trabajo activo: 300*ocupacion
     this.cargaSensibleOcupacion = this.cargSensible
-    
+    this.cargaSensibleOcupacionF = this.cargaSensibleOcupacion.toFixed(2)
     console.log("3 :", this.cargaSensibleOcupacion)
 
     //Esta formula es correcta FUNCIONA
     this.cargaSensibleIluminacion = this.potenciaIluminacion * this.supSuelo
-   
+    this.cargaSensibleIluminacionF =  this.cargaSensibleIluminacion.toFixed(2)
     console.log("4 :", this.cargaSensibleIluminacion)
 
     //Esta formula es correcta FUNCIONA
     this.cargaSensibleEquipamiento = cargaEquipamiento
+    this.cargaSensibleEquipamientoF = this.cargaSensibleEquipamiento.toFixed(2)
     
     console.log("5 :", this.cargaSensibleEquipamiento)
     //Esta formula es correcta No comprobada
     this.cargaTotalSensibleRefrigeracion = this.cargaSensibleRadiacionVidrio + this.cargaSensibleCerramientos + this.cargaSensibleAire + this.cargaSensibleOcupacion + this.cargaSensibleIluminacion + this.cargaSensibleEquipamiento
-    
+    this.cargaTotalSensibleRefrigeracionF = this.cargaTotalSensibleRefrigeracion.toFixed(2)
     console.log("1:", this.cargaSensibleRadiacionVidrio, "2:", this.cargaSensibleCerramientos, "3:", this.cargaSensibleAire, "4:", this.cargaSensibleOcupacion, "5:", this.cargaSensibleIluminacion, "6:", this.cargaSensibleEquipamiento)
                        //qv_sens_rad+qv_sens_trans+qv_sens_renov+qv_sens_ocup+qv_sens_ilum+qv_sens_equip
 
     //Esta formula es correcta No comprobada
     this.cargaLatenteAire = (this.aireRenovacion / 3600) * (1 / this.volum_espe_int_ver) * (this.entalpia_ext_ver_lat - this.entalpia_int_ver_lat) * 1.1
-   
+    this.cargaLatenteAireF = this.cargaLatenteAire.toFixed(2)
     console.log("7 :", this.cargaLatenteAire)
     //Esta formula es correcta No comprobada
     this.cargaLatenteOcupacion = this.cargLatente
-    
+    this.cargaLatenteOcupacionF = this.cargaLatenteOcupacion.toFixed(2)
     console.log("8 :", this.cargaLatenteOcupacion)
     //Esta formula es correcta No comprobada
     this.cargaTotalLatenteRefrigeracion = this.cargaLatenteAire + this.cargaLatenteOcupacion
-  
+    this.cargaTotalLatenteRefrigeracionF = this.cargaTotalLatenteRefrigeracion.toFixed(2)
     console.log("9 :", this.cargaTotalLatenteRefrigeracion)
     //Esta formula es correcta No comprobada
     this.potenciaRefrigeracion = (this.cargaTotalSensibleRefrigeracion + this.cargaTotalLatenteRefrigeracion) * (1 + this.factorSeguridad / 100)
-    
+    this.potenciaRefrigeracionF = this.potenciaRefrigeracion.toFixed(2)
     console.log("10 :", this.potenciaRefrigeracion)
     /************************************************************************ INVIERNO ******************************************************************/
 
     //Esta formula es correcta No comprobada
     this.cargaSensibleCerramientosInv = (cerramientoExtInt1 * (this.supCerra - this.superficieVidrios - this.superficiePuertas) * (this.temp_int_inv - this.tCerInv)) + (this.proyecto.uh * this.superficieVidrios * (this.temp_int_inv - this.tCerInv)) + (this.proyecto.up * this.superficiePuertas * (this.temp_int_inv - this.tCerInv)) + (cerramientoExtInt2 * (this.supCerra1 - this.superficieVidrios1 - this.superficiePuertas1) * (this.temp_int_inv - this.tCerInv1)) + (this.proyecto.uh * this.superficieVidrios1 * (this.temp_int_inv - this.tCerInv1)) + (this.proyecto.up * this.superficiePuertas1 * (this.temp_int_inv - this.tCerInv1)) + (cerramientoExtInt3 * (this.supCerra2 - this.superficieVidrios2 - this.superficiePuertas2) * (this.temp_int_inv - this.tCerInv2)) + (this.proyecto.uh * this.superficieVidrios2 * (this.temp_int_inv - this.tCerInv2)) + (this.proyecto.up * this.superficiePuertas2 * (this.temp_int_inv - this.tCerInv2)) + (cerramientoExtInt4 * (this.supCerra3 - this.superficieVidrios3 - this.superficiePuertas3) * (this.temp_int_inv - this.tCerInv3)) + (this.proyecto.uh * this.superficieVidrios3 * (this.temp_int_inv - this.tCerInv3)) + (this.proyecto.up * this.superficiePuertas3 * (this.temp_int_inv - this.tCerInv3)) + (techoExtInt * (this.supTecho - this.superficieVidrios4 - this.superficiePuertas4) * (this.temp_int_inv - this.tempTechoInv)) + (this.proyecto.uh * this.superficieVidrios4 * (this.temp_int_inv - this.tempTechoInv)) + (this.proyecto.up * this.superficiePuertas4 * (this.temp_int_inv - this.tempTechoInv)) + (sueloExtInt * (this.supSuelo) * (this.temp_int_inv - this.tempSueloInv))
-
+    this.cargaSensibleCerramientosInvF = this.cargaSensibleCerramientosInv.toFixed(2)
     
     console.log("11 :", this.cargaSensibleCerramientosInv)
     //Esta formula es correcta No comprobada
     this.cargaSensibleAireInv = -(this.aireRenovacion / 3600) * (1 / this.volum_espe_int_inv) * (this.entalpia_ext_inv_sens - this.entalpia_int_inv_sens) * 1.1
-
+    this.cargaSensibleAireInvF = this.cargaSensibleAireInv.toFixed(2) 
    
     console.log("carga sensible aire 1:", this.volum_espe_int_inv, "2:", this.entalpia_ext_inv_sens, "3:", this.entalpia_int_inv_sens)
     console.log("12 :", this.cargaSensibleAireInv)
     //Esta formula es correcta No comprobada
     this.cargaTotalSensibleCalefaccion = this.cargaSensibleCerramientosInv + this.cargaSensibleAireInv
-    
+    this.cargaTotalSensibleCalefaccionF = this.cargaTotalSensibleCalefaccion.toFixed(2)
     console.log("13 :", this.cargaTotalSensibleCalefaccion)
     ////Esta formula es correcta No comprobada
     this.potenciaCalefaccion = this.cargaTotalSensibleCalefaccion * (1 + this.factorSeguridad / 100)
-   
+    this.potenciaCalefaccionF = this.potenciaCalefaccion.toFixed(2)
     console.log("14 :", this.potenciaCalefaccion)
   }
 

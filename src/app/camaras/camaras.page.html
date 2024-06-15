@@ -1,24 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Cálculo de la potencia de climatización y calefacción</ion-title><br>
-  <ion-buttons slot="start">
-    <ion-back-button defaultHref = "/" text="Atrás" mode="ios" color="primary"></ion-back-button>
-  </ion-buttons>
+    
+      <div style="display: inline-flex;">
+        <img alt="Logo" src='/assets/logoReloj.JPG' width="100px" style="margin-left: 20px;padding-top: 20px;"/>
+        <h2 style="margin-left: 30px;padding-top: 40px;"><strong>ClimaCalc</strong></h2>
+      </div><br>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref = "/proyectos" text="Atrás" mode="ios" color="primary"></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
+
 </ion-header>
 <br>
 <ion-content style="width: 98% !important;" [hidden]="recintosCard">
-  <div style="width: 100%;">
-  <fieldset [hidden] = 'vistaRecintos'>
-    <ion-button (click)="crearRecinto()" expand="block" fill="solid" shape="round">
+  <div style="width: 99%;margin:auto;">
+    <p><strong>Proyecto: </strong>{{proyectoTitulo}}</p>
+    <ion-button (click)="crearRecinto()" expand="block" fill="solid" shape="round" style="width:80%;margin:auto;">
       Crear recinto nuevo
       <ion-icon name="add-circle-outline" style="font-size: 2em"></ion-icon>
-    </ion-button>
+    </ion-button><br>
+  <fieldset [hidden] = 'vistaRecintos'>
+   
     <legend>Listado de recintos:</legend>
 
     <ion-list *ngFor="let recinto of recintos">
       <!--<ion-item *ngIf="proyecto.titulo == variableRecibida || !variableRecibida">-->
-        <ion-card style="width:90%" (click)="mostrarDatosRecinto()">
+        <ion-card style="width:90%;margin:auto;" (click)="mostrarDatosRecinto()">
               <ion-grid >
                 <ion-row #recintoId id="{{recinto.idRec}}" style="display:none;" >
                   <ion-col style="display: inline-flex;" (click)="actualizarRecinto(nombreRecinto,temp_verano,temp_invierno,
@@ -54,125 +61,130 @@
                 
                    
                       <ion-grid [hidden] = "datosRecinto">
-                        <ion-row>
-                          <ion-col size="12">
-                            <ion-text color="primary" class="ion-text-center">
-                              <h3>Verano</h3>
-                            </ion-text>
-                          </ion-col>
-                        </ion-row>
-                        <ion-row>
-                          <ion-col size="8">Cargas Sensibles</ion-col>
-                          <ion-col size="2">(W)</ion-col>
-                          <ion-col size="2">(%)</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Radiación vidrios</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleRadiacionVidrio }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Transmisión cerramientos</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleCerramientos }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Infiltraciones y renovacion de aire</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleAire }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Ocupación</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleOcupacion }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Iluminación</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleIluminacion }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Equipamiento</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleEquipamiento }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Carga Total Sensible Refrigeración</ion-col>
-                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalSensibleRefrigeracion }}</strong></ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          <ion-col size="8">Cargas Latentes</ion-col>
-                          <ion-col size="2">(W)</ion-col>
-                          <ion-col size="2">(%)</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Infiltracion y renovacion de aire</ion-col>
-                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaLatenteAire}}</strong></ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Ocupación</ion-col>
-                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaLatenteOcupacion }}</strong></ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Total latente refrigeración</ion-col>
-                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalLatenteRefrigeracion }}</strong></ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Potencia Refrigeración</ion-col>
-                          <ion-col size="3" class="textTabla"><strong style="color:blue">{{ recinto.potenciaRefrigeracion }}</strong></ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          <ion-col size="12">
-                            <ion-text color="primary" class="ion-text-center">
-                              <h3>Invierno</h3>
-                            </ion-text>
-                          </ion-col>
-                        </ion-row>
-                        <ion-row>
-                          <ion-col size="8">Cargas Sensibles</ion-col>
-                          <ion-col size="2">(W)</ion-col>
-                          <ion-col size="2">(%)</ion-col>
-                        </ion-row>
-                        <ion-row>
-                         
-                          <ion-col size="7" class="textTabla">Transmision cerramientos</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleCerramientosInv }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Infiltración y renovación de aire</ion-col>
-                          <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleAireInv }}</ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Total sensible calefacción</ion-col>
-                          <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalSensibleCalefaccion }}</strong></ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
-                        <ion-row>
-                          
-                          <ion-col size="7" class="textTabla">Potencia calefacción</ion-col>
-                          <ion-col size="3" class="textTabla"><strong style="color:orange">{{ recinto.potenciaCalefaccion }}</strong></ion-col>
-                          <ion-col size="2" class="textTabla">30</ion-col>
-                        </ion-row>
+                        <div style="background-color: rgb(253, 210, 210);">
+                          <ion-row>
+                            <ion-col size="12">
+                              <ion-text color="primary" class="ion-text-center">
+                                <h3 style="color:red">Verano</h3>
+                              </ion-text>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row style="background-color: red; color:white">
+                            <ion-col size="8">Cargas Sensibles</ion-col>
+                            <ion-col size="2">(W)</ion-col>
+                            <ion-col size="2">(%)</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Radiación vidrios</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleRadiacionVidrio }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Transmisión cerramientos</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleCerramientos }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Infiltraciones y renovacion de aire</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleAire }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Ocupación</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleOcupacion }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Iluminación</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleIluminacion }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Equipamiento</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleEquipamiento }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Carga Total Sensible Refrigeración</ion-col>
+                            <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalSensibleRefrigeracion}}</strong></ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="background-color: red; color:white">
+                            <ion-col size="8">Cargas Latentes</ion-col>
+                            <ion-col size="2">(W)</ion-col>
+                            <ion-col size="2">(%)</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Infiltracion y renovacion de aire</ion-col>
+                            <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaLatenteAire}}</strong></ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Ocupación</ion-col>
+                            <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaLatenteOcupacion }}</strong></ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Total latente refrigeración</ion-col>
+                            <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalLatenteRefrigeracion }}</strong></ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:blue">
+                            
+                            <ion-col size="7" class="textTabla">Potencia Refrigeración</ion-col>
+                            <ion-col size="3" class="textTabla"><strong >{{ recinto.potenciaRefrigeracion }}</strong></ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                        </div>
+                        <div style="background-color: rgb(197, 220, 250);">
+                          <ion-row>
+                            <ion-col size="12">
+                              <ion-text color="primary" style="color: blue;">
+                                <h3>Invierno</h3>
+                              </ion-text>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row style="background-color: blue;color:white">
+                            <ion-col size="8">Cargas Sensibles</ion-col>
+                            <ion-col size="2">(W)</ion-col>
+                            <ion-col size="2">(%)</ion-col>
+                          </ion-row>
+                          <ion-row style="color:blue;">
+                           
+                            <ion-col size="7" class="textTabla">Transmision cerramientos</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleCerramientosInv }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:blue;">
+                            
+                            <ion-col size="7" class="textTabla">Infiltración y renovación de aire</ion-col>
+                            <ion-col size="3" class="textTabla">{{ recinto.cargaSensibleAireInv }}</ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:blue;">
+                            
+                            <ion-col size="7" class="textTabla">Total sensible calefacción</ion-col>
+                            <ion-col size="3" class="textTabla"><strong>{{ recinto.cargaTotalSensibleCalefaccion }}</strong></ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                          <ion-row style="color:red;">
+                            
+                            <ion-col size="7" class="textTabla">Potencia calefacción</ion-col>
+                            <ion-col size="3" class="textTabla"><strong >{{ recinto.potenciaCalefaccion }}</strong></ion-col>
+                            <ion-col size="2" class="textTabla">30</ion-col>
+                          </ion-row>
+                        </div>
+                       
                       </ion-grid>
                     
               </ion-card >
@@ -229,7 +241,7 @@
               <legend>Filtración del aire de ventilación</legend>
               <ion-grid>
                 <ion-row>
-                  <ion-col size="6">
+                  <ion-col size="5">
                     <ion-item class="escalado">
                       <label style="width:100%; margin:auto;">IDA</label>
                       <ion-select multiple="false" placeholder="Selecccione IDA(1,2,3,4)" [(ngModel)] = "nivelFiltracionRequerido" [ngModelOptions]="{ standalone: true }" (ionChange)="getFiltros()" #ida>
@@ -240,17 +252,29 @@
                       </ion-select>
                     </ion-item>
                   </ion-col>
+                  <ion-col size="1">
+                    <img id="click-trigger4" src="assets/iconoInfo.png" width="20px" style="float: right;margin-right: 10px;" />
+              
+                    <ion-popover trigger="click-trigger4" triggerAction="click">
+                      <ng-template>
+                        <ion-content class="ion-padding">IDA 1: (aire de óptima calidad):hospitales, clínicas, laboratorios y guarderias<br>
+                            IDA 2: (aire de buena calidad): oficinas, residencias, salas de lectura, museos, salas de tribunales, aulas de enseñanza y piscinas.<br>
+                            IDA 3: (aire de calidad media): edificios comerciales, cines, teatros, salones de actos, habitaciones de hoteles, restaurantes y bares, gimnasios
+                            locales para el deporte y salas de ordenadores.<br>
+                            IDA 4: (aire de calidad baja). 
+                        </ion-content>
+                      </ng-template>
+                    </ion-popover>
+                  </ion-col>
                   <ion-col size="6">
-                    <label class="">Nivel de filtración requerido</label>
-                    <input type="text" class="numero" [(ngModel)] = 'filtro' [ngModelOptions]="{ standalone: true }" readonly #nivelFiltro/>
+                    <label style="padding-left:20px">Nivel de filtración requerido</label>
+                    <input type="text" class="numero" style="margin-left:20px" [(ngModel)] = 'filtro' [ngModelOptions]="{ standalone: true }" readonly #nivelFiltro/>
                   </ion-col>
                 </ion-row>
               </ion-grid>
-            
-              
             </fieldset>
+           </ion-col>
             <!-- COLUMNA 2 ------------->
-          </ion-col>
           <ion-col size="12" size-md="12" size-lg="3"  > 
             <fieldset>
               <legend>Dimensiones del recinto</legend>
@@ -265,20 +289,17 @@
                 <input type="number" class="numero" [(ngModel)] = "calcVolumen" #volumen/><br/>
               </div><br/>
             </fieldset>
-          
           </ion-col>
           <!--------------------------------------- CERRAMIENTOS ----------------------------------------->
           <ion-col size="12" size-md="12" size-lg="5" >
             <fieldset>
               <legend>Características y ubicación de los cerramientos</legend>
               <label style="padding-left: 10px;">Elija numero de cerramiento:</label><br>
-              <div style="display: inline;padding-left: 10px;">
-                <ion-button (click)="verCerramiento1()">1</ion-button>
-                <ion-button (click)="verCerramiento2()">2</ion-button>
-                <ion-button (click)="verCerramiento3()">3</ion-button>
-                <ion-button (click)="verCerramiento4()">4</ion-button>
-                <ion-button (click)="pruebas()">Pruebas</ion-button>
-
+              <div style="display: inline;padding-left: 8px;">
+                <ion-button (click)="verCerramiento1()" style="font-size: 12px;">Pared 1</ion-button>
+                <ion-button (click)="verCerramiento2()" style="font-size: 12px;">Pared 2</ion-button>
+                <ion-button (click)="verCerramiento3()" style="font-size: 12px;">Pared 3</ion-button>
+                <ion-button (click)="verCerramiento4()" style="font-size: 12px;">Pared 4</ion-button>
               </div>
               <!----------------------------------  COOR 1 ---------------------------------------------------------->
               <div id="coor1" [hidden]="coor1Visible" >
@@ -710,8 +731,11 @@
                   </ion-col>
                 </ion-row>
               </ion-grid>
+              <br>
               </div>
+           
             </fieldset>
+            <br>
 
 
 
@@ -808,6 +832,7 @@
                  
                 </ion-grid>
               </fieldset>
+              <br>
 
               <!-------------------------------------------   SUELO   ---------------------------------------------------------------------------->
               <fieldset>

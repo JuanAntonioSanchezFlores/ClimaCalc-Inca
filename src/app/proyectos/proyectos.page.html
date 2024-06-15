@@ -1,16 +1,18 @@
 <ion-content [fullscreen]="true">
   <ion-header [translucent]="true">
     <ion-toolbar>
-      <img alt="Logo" src='/assets/logo.png' width="100px" />
-      <div (click)="logout()">
-        <h3 style="width:90%;text-align: center;"><strong>Proyectos</strong></h3>
-        <h5 style="text-align: right;">variable global{{ email }}<ion-icon name="log-in-outline" class="icono"></ion-icon></h5>
+      <div style="display: inline-flex;">
+        <img alt="Logo" src='/assets/logoReloj.JPG' width="100px" style="margin-left: 20px;padding-top: 20px;"/>
+        <h2 style="margin-left: 30px;padding-top: 60px;"><strong>ClimaCalc</strong></h2>
       </div>
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref = "/home" text="Atrás" mode="ios" color="dark"></ion-back-button>
-      </ion-buttons>
+      
+      <div (click)="logout()" style="text-align:end;">
+        <ion-icon name="log-in-outline" class="icono"></ion-icon>
+      </div>
     </ion-toolbar>
+    
   </ion-header>
+  <h3 style="width:90%;text-align: center;"><strong>Proyectos</strong></h3>
   <ion-button (click)="nuevoProyecto()" expand="block" style="margin-top:20px;width:70%;margin:auto;padding-top:20px;">Crear nuevo proyecto
     <ion-icon name="add-circle"></ion-icon>
   </ion-button>
@@ -59,14 +61,14 @@
             <ion-row>
               <ion-card-content >
   
-                    <p><strong>Fecha:</strong>{{proyecto.fecha}}</p>
-                    <p><strong>Cliente:</strong>{{proyecto.cliente}}</p>
-                    <p><strong>Proyectista:</strong>{{proyecto.proyectista}}</p>
-                    <p><strong>Ciudad:</strong>{{proyecto.ciudad}} </p>
-                    <p><strong>Observaciones:</strong>{{proyecto.observaciones}}</p><br>
-                    <p><strong>Nº de recintos:</strong>{{proyecto.recintos.length}} </p>
-                    <p><strong>Potencia Refrigeracion Edificio:</strong ><span style="color:blue;">{{sumarPotenciasCalefaccion(proyecto)}}{{sumaCalefaccion}}</span></p><br>
-                    <p><strong>Potencia Calefacción Edificio:</strong ><span style="color:red">{{sumaCalefaccion}}</span></p><br>
+                    <p><strong>Fecha: </strong>{{ proyecto.fecha}}</p>
+                    <p><strong>Cliente: </strong>{{ proyecto.cliente}}</p>
+                    <p><strong>Proyectista: </strong>{{ proyecto.proyectista}}</p>
+                    <p><strong>Ciudad: </strong>{{ proyecto.ciudad}} </p>
+                    <p><strong>Observaciones: </strong>{{ proyecto.observaciones}}</p><br>
+                    <p><strong>Nº de recintos: </strong><span style="color:green;">{{  proyecto.recintos.length}}</span> </p>
+                    <p><strong>Potencia Refrigeración Edificio: </strong ><span style="color:blue;">{{  sumarPotenciasCalefaccion(proyecto)}}{{sumaCalefaccion}}</span></p>
+                    <p><strong>Potencia Calefacción Edificio: </strong ><span style="color:red">{{  sumarPotenciasRefrigeracion(proyecto)}}{{sumaRefrigeracion}}</span></p>
                       <!-- Agrega aquí cualquier otra propiedad que quieras mostrar -->
                    
                     
@@ -74,14 +76,14 @@
                       
                       <label>Datos de la ciudad</label>
                       <hr class="thick-hr">
-                      <p><strong>Ciudad:</strong>  {{ proyecto.ciudad }}</p>
-                      <p><strong>Altitud:</strong>  {{ proyecto.altitud }} m. </p>
-                      <p><strong>Temperatura exterior verano:</strong> {{proyecto.t_exteriorV}} ºC</p>
-                      <p><strong>Temperatura exterior invireno:</strong> {{proyecto.t_exteriorI}} ºC</p>
-                      <p><strong>Humedad relativa exterior verano:</strong> {{proyecto.h_relativaV}} %</p>
-                      <p><strong>Humedad relativa exterior invierno:</strong> {{proyecto.h_relativaI}} %</p>
-                      <p><strong>Temperatura suelo verano:</strong> {{proyecto.temp_suelo_V}} ºC</p>
-                      <p><strong>Temperatura suelo invierno:</strong> {{proyecto.temp_suelo_I}} ºC</p>
+                      <p><strong>Ciudad: </strong>  {{ proyecto.ciudad }}</p>
+                      <p><strong>Altitud: </strong>  {{ proyecto.altitud }} m. </p>
+                      <p><strong>Temperatura exterior verano: </strong> {{proyecto.t_exteriorV}} ºC</p>
+                      <p><strong>Temperatura exterior invireno: </strong> {{proyecto.t_exteriorI}} ºC</p>
+                      <p><strong>Humedad relativa exterior verano: </strong> {{proyecto.h_relativaV}} %</p>
+                      <p><strong>Humedad relativa exterior invierno: </strong> {{proyecto.h_relativaI}} %</p>
+                      <p><strong>Temperatura suelo verano: </strong> {{proyecto.temp_suelo_V}} ºC</p>
+                      <p><strong>Temperatura suelo invierno: </strong> {{proyecto.temp_suelo_I}} ºC</p>
                      <br>
                       <label>Coeficiente de transmisión de calor de los cerramientos</label>
                       <hr class="thick-hr"> 

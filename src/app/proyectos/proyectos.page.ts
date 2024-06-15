@@ -75,9 +75,19 @@ sumarPotenciasCalefaccion(proyecto:ProyectosInterfaz){
   
   for(let rec of proyecto.recintos){
     console.log("potencia calefaccion", rec.potenciaCalefaccion)
-    this.sumaCalefaccion = rec.potenciaCalefaccion + this.sumaCalefaccion
+    this.sumaCalefaccion = parseFloat(rec.potenciaCalefaccion) + this.sumaCalefaccion
     }
     console.log("Calefaccion: ", this.sumaCalefaccion)
+}
+
+sumarPotenciasRefrigeracion(proyecto:ProyectosInterfaz){
+  this.sumaRefrigeracion = 0
+  
+  for(let rec of proyecto.recintos){
+    console.log("potencia calefaccion", rec.potenciaRefrigeracion)
+    this.sumaRefrigeracion = parseFloat(rec.potenciaRefrigeracion) + this.sumaRefrigeracion
+    }
+    console.log("Calefaccion: ", this.sumaRefrigeracion)
 }
 
 nuevoProyecto(){

@@ -1,14 +1,22 @@
 <ion-content [fullscreen]="true">
   <ion-header [translucent]="true">
     <ion-toolbar>
-      <img alt="Logo" src='/assets/logoApp.JPG' width="100px" style="padding-left:10px;padding-top:10px;"/>
+     
+    
+        <div style="display: inline-flex;">
+          <img alt="Logo" src='/assets/logoReloj.JPG' width="100px" style="margin-left: 20px;padding-top: 20px;"/>
+          <h2 style="margin-left: 30px;padding-top: 40px;"><strong>ClimaCalc</strong></h2>
+        </div><br>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref = "/proyectos" text="Atrás" mode="ios" color="primary"></ion-back-button>
+        </ion-buttons>
       <div (click)="logout()">
-        <h3 style="width:90%;text-align: center;"><strong>Crear Nuevo Proyecto</strong></h3>
-        <h5 style="text-align: right;">variable global{{ variableGlobal}}<ion-icon name="log-in-outline"
-            class="icono"></ion-icon></h5>
+        <h5 style="text-align: right;"><ion-icon name="log-in-outline"
+            style="font-size: 40px;"></ion-icon></h5>
       </div>
     </ion-toolbar>
   </ion-header>
+  <h3 style="width:90%;text-align: center;"><strong>Crear Nuevo Proyecto</strong></h3>
   <form action="">
     <fieldset style="width:95%;margin:auto">
       <legend>Datos del proyecto:</legend>
@@ -68,7 +76,7 @@
             <ion-input type="number" label="Tª suelo verano(ºC)" min="-100" max="100" label-placement="floating"
               fill="solid" placeholder="0"
               [value]="selectedCity?.temp_ext_ver !== null ? ((selectedCity.temp_ext_ver || 0) + 15) / 2 : null" [ngModel]="tempSueloVerano" [ngModelOptions]="{standalone: true}"
-              readonly #temp_suelo_V></ion-input>
+             readonly #temp_suelo_V></ion-input>
           </ion-col>
           <ion-col size="6">
             <ion-input type="number" label="Tª suelo invierno(ºC)" min="-100" max="100" label-placement="floating"
