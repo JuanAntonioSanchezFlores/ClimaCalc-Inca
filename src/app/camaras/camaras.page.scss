@@ -87,6 +87,7 @@ input{
   cursor:pointer;
   border-radius: 40%;
   border: 5px solid green;
+ 
 }
 
 .tabla-personalizada {
@@ -122,6 +123,6 @@ ion-content, ion-header, ion-label, ion-input, ion-title, ion-item {
   translate: no;
 }
 
-input, select, label, fieldset, form{
+input, select, label, fieldset, form , span{
   translate: no;
 }

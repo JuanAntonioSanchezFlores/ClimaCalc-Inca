@@ -197,7 +197,7 @@
 
   <!------------------------------------  VISTA CREAR RECINTO----------Vista oculta, visible al pulsar CREAR RECINTO -------------------->
 
-  <div [hidden]="vistaCrearRecinto" style="width:98%;margin:auto;">
+  <div [hidden]="vistaCrearRecinto" style="width:100%;margin:auto;">
   <ion-card >
     <ion-card-header>
       <ion-card-title  >Proyecto: <label><strong>{{ proyectoTitulo }}</strong></label></ion-card-title>
@@ -243,12 +243,12 @@
                 <ion-row>
                   <ion-col size="5">
                     <ion-item class="escalado">
-                      <label style="width:100%; margin:auto;">IDA</label>
+                      <label style="width:100%; margin:auto;" translate="no" >IDA</label>
                       <ion-select multiple="false" placeholder="Selecccione IDA(1,2,3,4)" [(ngModel)] = "nivelFiltracionRequerido" [ngModelOptions]="{ standalone: true }" (ionChange)="getFiltros()" #ida>
-                        <ion-select-option value="ida1"><strong>IDA 1</strong></ion-select-option>
-                        <ion-select-option value="ida2"><strong>IDA 2</strong></ion-select-option>
-                        <ion-select-option value="ida3"><strong>IDA 3</strong></ion-select-option>
-                        <ion-select-option value="ida4"><strong>IDA 4</strong></ion-select-option>
+                        <ion-select-option value="ida1" translate="no" ><strong translate="no" >IDA 1</strong></ion-select-option>
+                        <ion-select-option value="ida2" translate="no" ><strong translate="no" >IDA 2</strong></ion-select-option>
+                        <ion-select-option value="ida3" translate="no" ><strong translate="no" >IDA 3</strong></ion-select-option>
+                        <ion-select-option value="ida4" translate="no" ><strong translate="no" >IDA 4</strong></ion-select-option>
                       </ion-select>
                     </ion-item>
                   </ion-col>
@@ -296,10 +296,10 @@
               <legend>Características y ubicación de los cerramientos</legend>
               <label style="padding-left: 10px;">Elija numero de cerramiento:</label><br>
               <div style="display: inline;padding-left: 8px;">
-                <ion-button (click)="verCerramiento1()" style="font-size: 12px;">Pared 1</ion-button>
-                <ion-button (click)="verCerramiento2()" style="font-size: 12px;">Pared 2</ion-button>
-                <ion-button (click)="verCerramiento3()" style="font-size: 12px;">Pared 3</ion-button>
-                <ion-button (click)="verCerramiento4()" style="font-size: 12px;">Pared 4</ion-button>
+                <ion-button (click)="verCerramiento1()" style="font-size: 10px;">Recinto 1</ion-button>
+                <ion-button (click)="verCerramiento2()" style="font-size: 10px;">Recinto 2</ion-button>
+                <ion-button (click)="verCerramiento3()" style="font-size: 10px;">Recinto 3</ion-button>
+                <ion-button (click)="verCerramiento4()" style="font-size: 10px;">Recinto 4</ion-button>
               </div>
               <!----------------------------------  COOR 1 ---------------------------------------------------------->
               <div id="coor1" [hidden]="coor1Visible" >
